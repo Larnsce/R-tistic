@@ -1,0 +1,58 @@
+---
+title: "resources"
+author: "Lars Schoebitz"
+date: "20 January 2017"
+output: html_document
+---
+
+#### Random collection of hyperlinks
+
+##### R and R Studio Intro
+
+[Basic but good](http://bit.ly/2jg8DF4)
+
+
+##### Basic stats
+
+[How to Interpret a Regression Model with Low R-squared and Low P values](http://bit.ly/2jV8kjX)
+[What statistical analysis should I use?](http://bit.ly/2iK1rVx)
+
+
+##### Experimental design
+
+[3ie Working Paper 26:Power calculation for causal inference in social science: sample size and minimum detectable effect determination](http://bit.ly/2jHzrBu)
+
+##### Functions
+
+[Intro to functions, idre, UCLA](http://bit.ly/2jV8kjX)
+
+##### Datavis
+
+[Data visualisation catalogue](http://bit.ly/2jVa6RT)
+
+##### ggplot2
+
+[Scientific Journal and Sci-Fi Themed Color Palettes for ggplot2 (e.g. the Simpsons!)](http://bit.ly/2k8KRL9)
+
+##### Data mining
+
+[The World Bank Data Catalogue](http://bit.ly/2iT49TQ)
+
+##### TeX
+
+[The MacTeX-2016 Distribution](http://bit.ly/2jHI13u)
+
+#### Books
+
+[Sanjoy Mahajan - Street-fighting mathematics](http://bit.ly/2jHvahq)
+[A Student's Guide to Data and Error Analysis, Cambridge](http://bit.ly/2iTaGOo)
+
+
+#### e-learning
+
+[Sanjoy Mahajan - Street-fighting mathematics](http://bit.ly/2iJTnnP)
+[HarvardX: PH525.1x Data Analysis for Life Sciences 1: Statistics and R](http://bit.ly/2jxkGif)
+[Microsoft: DAT204x Introduction to R for Data Science](http://bit.ly/2j2v572)
+
+
+

@@ -1,1 +1,1 @@
-# R-tistic
+Repo for the R-tistic course

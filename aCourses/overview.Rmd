@@ -9,3 +9,69 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Introduction
+## R
+## R Studio
+## Data
+
+- Data gathering
+- Data analyi
+- Data Wrangling/Cleaning
+- Data visualisation
+- Data presentation documents
+
+## File Management
+## Reproducible Research
+## Influencing people
+
+- 
+
+## R courses
+
+- R4ALL
+- e-learning
+
+## Books
+## GitHub
+## Git
+## Mattermost/Slack
+
+# Data
+
+# Data Wrangling/Cleaning
+## dplyr
+## tidyr
+
+# Data visualisation
+## Basic intro
+## ggplot2
+
+# Data Gathering
+# Data Mining
+
+# Data Analysis
+## Descriptive anaylis
+## Exploratory analysis
+## Inferential analysis
+## Predictive analysis
+## Causal analysis
+## Mechanistic analysis
+
+# Data presentation
+## slides
+
+**xaringan**
+
+Follow this presentation by
+
+[Introduction to xaringan by Yihui Xie](http://bit.ly/2iRF68v)
+
+
+# Reproducible Research
+## RMarkdown
+## knitr
+## bookdown
+## Pandoc
+## LaTeX
+
+

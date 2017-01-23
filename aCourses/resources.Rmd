@@ -5,18 +5,24 @@ date: "20 January 2017"
 output: html_document
 ---
 
+#### Publications
+
+##### Reproducible research
+
+[nature publication](http://go.nature.com/2jm3QSx)
+
+
+
 #### Random collection of hyperlinks
 
 ##### R and R Studio Intro
 
 [Basic but good](http://bit.ly/2jg8DF4)
 
-
 ##### Basic stats
 
 [How to Interpret a Regression Model with Low R-squared and Low P values](http://bit.ly/2jV8kjX)
 [What statistical analysis should I use?](http://bit.ly/2iK1rVx)
-
 
 ##### Experimental design
 
@@ -37,15 +43,22 @@ output: html_document
 ##### Data mining
 
 [The World Bank Data Catalogue](http://bit.ly/2iT49TQ)
+[rOpenSci Community](http://bit.ly/2kh46qg)
 
 ##### TeX
 
 [The MacTeX-2016 Distribution](http://bit.ly/2jHI13u)
 
+##### RStudio
+
+[R Cheatsheets](http://bit.ly/2kfDOk3)
+
+
 #### Books
 
 [Sanjoy Mahajan - Street-fighting mathematics](http://bit.ly/2jHvahq)
 [A Student's Guide to Data and Error Analysis, Cambridge](http://bit.ly/2iTaGOo)
+
 
 
 #### e-learning
@@ -54,5 +67,23 @@ output: html_document
 [HarvardX: PH525.1x Data Analysis for Life Sciences 1: Statistics and R](http://bit.ly/2jxkGif)
 [Microsoft: DAT204x Introduction to R for Data Science](http://bit.ly/2j2v572)
 
+
+
+#### People to follow
+
+##### If on twitter
+
+[Yihui Xie (@xieyihui)](http://bit.ly/2jNj8Ty)
+
+##### If not on twitter (...)
+
+[Yihui Xie](http://bit.ly/2jFlRw5)
+
+
+#### R Projects 
+
+[rOpenSci Community](http://bit.ly/2kh46qg)
+
+>*rOpenSci is entirely a community driven effort. The project originally came together from conversations between like-minded researchers and continues to expand as more people contribute tools, expertise, and research ideas.* - taken from: http://ropensci.org/community/ (22.01.2017)
 
 

@@ -5,56 +5,74 @@ date: "20 January 2017"
 output: html_document
 ---
 
-#### Publications
+# Publications
 
-##### Reproducible research
+## Reproducible research
 
 [nature publication](http://go.nature.com/2jm3QSx)
 
+[Book: The Practice of Reproducible Research](https://www.practicereproducibleresearch.org)
 
-#### Random collection of hyperlinks
+> This book contains a collection of 31 case studies of reproducible research workflows, written by academic researchers in the data-intensive sciences. Each case study describes how the author combined specific tools, ideas, and practices in order to complete a real-world research project. Emphasis is placed on the practical aspects of how the author organized his or her research to make it as reproducible as possible.
 
-##### R and R Studio Intro
+## Graphics
+
+[Cleveland, McGill (1984) -Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods](https://www.jstor.org/stable/2288400?seq=1#page_scan_tab_contents)
+
+
+# Random collection of hyperlinks
+
+## R and R Studio Intro
 
 [Basic but good](http://bit.ly/2jg8DF4)
 [Lesson and course overview by Software Carpentry](https://swcarpentry.github.io/r-novice-gapminder/)
 
-##### R packages 
+## R packages 
 
 [Excellent collection](https://github.com/qinwf/awesome-R)
 
-##### Basic stats
+## R Markdown
+
+[RStudio Blogpost 2014. R Markdown v2, talk by Yihui](https://blog.rstudio.org/2014/06/18/r-markdown-v2/)
+
+## Basic stats
 
 [How to Interpret a Regression Model with Low R-squared and Low P values](http://bit.ly/2jV8kjX)
 [What statistical analysis should I use?](http://bit.ly/2iK1rVx)
 
-##### Advanced stats
+## Advanced stats
 
 [PCA in R](https://www.r-bloggers.com/principal-component-analysis-in-r/amp/)
 
-##### Experimental design
+## Experimental design
 
 [3ie Working Paper 26:Power calculation for causal inference in social science: sample size and minimum detectable effect determination](http://bit.ly/2jHzrBu)
 
-##### Functions
+
+## Functions
 
 [Intro to functions, idre, UCLA](http://bit.ly/2jV8kjX)
 
-##### Datavis
+## Datavis
 
 [Data visualisation catalogue](http://bit.ly/2jVa6RT)
 
-##### ggplot2
+## ggplot2
 
 [Scientific Journal and Sci-Fi Themed Color Palettes for ggplot2 (e.g. the Simpsons!)](http://bit.ly/2k8KRL9)
 
-##### Data mining
+## Data mining
 
-[The World Bank Data Catalogue](http://bit.ly/2iT49TQ)
-[rOpenSci Community](http://bit.ly/2kh46qg)
-[www.datazar.com/](www.datazar.com/)
+[The World Bank Data Catalogue](http://bit.ly/2iT49TQ)  
+[rOpenSci Community](http://bit.ly/2kh46qg)  
+[www.datazar.com/](www.datazar.com/)  
+[Stats SA](http://www.statssa.gov.za)  
+[Stats SA - Access to information manual](http://www.statssa.gov.za/wp-content/uploads/2013/07/Access_to_information.pdf) 
+[Basic Boolean Operators explained](http://booleanblackbelt.com/2008/12/basic-boolean-search-operators-and-query-modifiers-explained/)  
+[ArcGis opendata](https://blogs.esri.com/esri/arcgis/2016/11/08/whats-new-in-open-data-november-2016/)  
 
-##### TeX
+
+## TeX
 
 [The MacTeX-2016 Distribution](http://bit.ly/2jHI13u)
 
@@ -62,53 +80,63 @@ $$
 \sum_{i=1}^NX_i + Y_i - Z
 $$
 
-##### RStudio
+## RStudio
 
 [R Cheatsheets](http://bit.ly/2kfDOk3)
 
 
-#### Books
+## Books
 
 [Sanjoy Mahajan - Street-fighting mathematics](http://bit.ly/2jHvahq)
 [A Student's Guide to Data and Error Analysis, Cambridge](http://bit.ly/2iTaGOo)
 
-
-
-#### e-learning
+## e-learning
 
 [Sanjoy Mahajan - Street-fighting mathematics](http://bit.ly/2iJTnnP)
 [HarvardX: PH525.1x Data Analysis for Life Sciences 1: Statistics and R](http://bit.ly/2jxkGif)
 [Microsoft: DAT204x Introduction to R for Data Science](http://bit.ly/2j2v572)
 
+# People to follow
 
-#### People to follow
-
-##### If on twitter
+## If on twitter
 
 [Yihui Xie (@xieyihui)](http://bit.ly/2jNj8Ty)
 
-##### If not on twitter (...)
+## If not on twitter (...)
 
 [Yihui Xie](http://bit.ly/2jFlRw5)
 
 
-#### R Projects 
+## R Projects 
 
 [rOpenSci Community](http://bit.ly/2kh46qg)
 
 >*rOpenSci is entirely a community driven effort. The project originally came together from conversations between like-minded researchers and continues to expand as more people contribute tools, expertise, and research ideas.* - taken from: http://ropensci.org/community/ (22.01.2017)
 
-#### Great vis
+## Great vis
 
 [Thematic maps with ggplot2 - Switzerland](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)
 
-#### Other language
+## Other language
 
 [Julia. Medium Post](https://medium.com/@ivydatascience/julia-and-its-usefulness-in-data-science-6e9181504ff4#.t0chjcw3c)
 [Book Review: Julia for Data Science by Zacharias Voulgaris, Ph.D.](http://insidebigdata.com/2017/01/10/book-review-julia-data-science/)
 
 [Data Science, Machine Learning, Artificial Intelligence, Big Data, and IoT Resources](https://github.com/acastrounis/data-science-machine-learning-ai-big-data-iot-resources/blob/master/README.md)
 
-#### Workshops
+## Workshops
 
 [Elements of a successful #openscience #rstats workshop](https://www.r-bloggers.com/elements-of-a-successful-openscience-rstats-workshop/amp/)
+
+# Publishing
+
+[Making websites with R Markdown...](https://slides.yihui.name/2017-rstudio-conf-blogdown-Yihui-Xie.html?utm_content=buffer96d21&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer#1)
+
+[...and Hugo](https://gohugo.io)
+
+# Blogs / Podcasts
+
+[Data Blog by ETH Zurich](https://www.explora.ethz.ch/en/s/surfing-the-sea-of-data/)
+[Reproducible websites](http://www.the100.ci/2017/02/19/reproducible-websites-for-fun-and-profit/#comment-59)
+[Jon Zelner: Make Files](http://www.jonzelner.net/statistics/make/docker/reproducibility/2016/05/31/reproducibility-pt-1/)
+

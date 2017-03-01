@@ -9,6 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+
 # Introduction
 - questionnaire
   - expereince
@@ -78,17 +80,10 @@ Alt + Shift + K
 # Data visualisation
 ## Basic intro
 ## ggplot2
-- ggsave to save graphics in high res
 
 # Data Gathering
+
 # Data Mining
-
-[Stats SA](http://www.statssa.gov.za)
-[Stats SA - Access to information manual](http://www.statssa.gov.za/wp-content/uploads/2013/07/Access_to_information.pdf)
-
-[Basic Boolean Operators explained](http://booleanblackbelt.com/2008/12/basic-boolean-search-operators-and-query-modifiers-explained/)
-
-[ArcGis opendata](https://blogs.esri.com/esri/arcgis/2016/11/08/whats-new-in-open-data-november-2016/)
 
 # Data Analysis
 ## Descriptive anaylis
@@ -100,42 +95,17 @@ Alt + Shift + K
 
 # Data presentation
 ## slides
-
-**xaringan**
-
-Follow this presentation by
-
-[Introduction to xaringan by Yihui Xie](http://bit.ly/2iRF68v)
-
-
 ## Website
-
-[Making websites with R Markdown...](https://slides.yihui.name/2017-rstudio-conf-blogdown-Yihui-Xie.html?utm_content=buffer96d21&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer#1)
-
-[...and Hugo](https://gohugo.io)
-
 
 # Reproducible Research
 
-## Reproducible Research
-
-[Book: The Practice of Reproducible Research](https://www.practicereproducibleresearch.org)
-
-> This book contains a collection of 31 case studies of reproducible research workflows, written by academic researchers in the data-intensive sciences. Each case study describes how the author combined specific tools, ideas, and practices in order to complete a real-world research project. Emphasis is placed on the practical aspects of how the author organized his or her research to make it as reproducible as possible.
-
 ## RMarkdown
-
-[RStudio Blogpost 2014. R Markdown v2, talk by Yihui](https://blog.rstudio.org/2014/06/18/r-markdown-v2/)
-
 ## knitr
 ## bookdown
+## blogdown
 ## Pandoc
 ## LaTeX
 
-# Theory and Research
-## R Journal
-[R Journal](https://journal.r-project.org/archive/2016-1/RJ-2016-1.pdf)
 
-## Graphics
-[Cleveland, McGill (1984) -Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods](https://www.jstor.org/stable/2288400?seq=1#page_scan_tab_contents)
+
 

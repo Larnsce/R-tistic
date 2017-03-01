@@ -75,15 +75,14 @@ Documentation: https://docs.mattermost.com/install/docker-local-machine.html#mac
 # Mattermost User's Guide
 
 https://docs.mattermost.com/guides/user.html
-
-
+do
 
 
 ---
 # Try this
 
-- in terminal: `stop mattermost-preview`
-- in terminal: `start mattermost-preview`
+- in terminal: `docker stop mattermost-preview`
+- in terminal: `docker start mattermost-preview`
 
 http://localhost:8065/r-tistic
 

@@ -1,0 +1,36 @@
+---
+title: "Tidy Text Mining with R"
+author: "Lars Schoebitz"
+date: "11 March 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Intro
+
+Notes for reading:
+
+Text Mining with R - A Tidy Approach - Julia Silge and David Robinson - 2017-02-26
+
+Available freely here: http://tidytextmining.com/index.html
+
+## Additional material
+
+https://cran.r-project.org/web/views/NaturalLanguageProcessing.html
+
+```{r}
+
+library(tidytext)
+
+dat <- data("stop_words")
+
+
+tidy_books <- tidy_books %>%
+  anti_join(stop_words)
+
+```
+
+

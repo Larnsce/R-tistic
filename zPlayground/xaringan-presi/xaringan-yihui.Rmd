@@ -3,6 +3,7 @@ title: "Presentation Ninja"
 subtitle: "⚔<br/>with xaringan"
 author: "Yihui Xie"
 date: "2016/12/12"
+email: "lars@lse.de"
 output:
   xaringan::moon_reader:
     lib_dir: libs

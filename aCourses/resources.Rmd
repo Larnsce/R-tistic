@@ -140,3 +140,9 @@ $$
 [Reproducible websites](http://www.the100.ci/2017/02/19/reproducible-websites-for-fun-and-profit/#comment-59)
 [Jon Zelner: Make Files](http://www.jonzelner.net/statistics/make/docker/reproducibility/2016/05/31/reproducibility-pt-1/)
 
+# Code
+
+## Style Guide
+
+[Hadley Wickham Style Guide](http://adv-r.had.co.nz/Style.html)
+

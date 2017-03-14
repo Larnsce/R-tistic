@@ -4,7 +4,7 @@
     <title>R-tistic</title>
     <meta charset="utf-8">
     <meta name="author" content="Lars Schoebitz r-tistic@lse.de" />
-    <meta name="date" content="2017-03-23" />
+    <meta name="date" content="2017-03-14" />
     <link rel="stylesheet" href="r-tistic_theme.css" type="text/css" />
   </head>
   <body>
@@ -14,7 +14,7 @@ class: center, middle, inverse, title-slide
 # R-tistic
 ## Introduction to R and RStudio
 ### Lars Schoebitz </br><a href="mailto:r-tistic@lse.de">r-tistic@lse.de</a>
-### March 23, 2017
+### March 14, 2017
 
 ---
 
@@ -29,6 +29,7 @@ layout: true
 class: theme
 
 ---
+
 # Getting started
 ***
 ## Download and install R
@@ -36,17 +37,19 @@ class: theme
 * Go to http://www.r-project.org
 * Download R for your operating system
 * Install R
-* Bring yourself and your laptop to Eawag (Room Aqualino) on 16.03.2017 at 01:30 pm
+* Yes, even if you have already done that before
 
 
 ---
+
 # Getting started
 ***
 ## Download and install RStudio
 
 * Go to https://www.rstudio.com
-* Download RStudio for your operating system (Linux, (Mac) OS X, Windows)
+* Download RStudio for your operating system
 * Install RStudio
+* Again, yes, even if you have already done that before
 
 ---
 
@@ -54,7 +57,29 @@ class: theme
 ***
 ## Open RStudio 
 
-- type `print("hello world")` into the Console and hit `↵`
+- open RStudio
+
+
+---
+# Getting started
+***
+## Open RStudio 
+
+![](figures/r-studio-IDE.png)
+
+---
+# Getting started
+***
+## Find the Console
+
+![](figures/r-studio-IDE-console.jpg)
+
+---
+# Getting started
+***
+## Write your first line of code
+
+- type `print("hello world")` into the **Console** and hit `↵`
 
 --
 
@@ -77,9 +102,9 @@ Congrats! You have just written your first R code.
 ***
 ## Install packages 
 
-- type `install.packages("tidyverse")` into the Console
+- type `install.packages("tidyverse")` into the **Console**
     - this installs the R packages: `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr` and `dplyr`
-- type `library(tidyverse)` into the Console and hit `↵`
+- type `library(tidyverse)` into the **Console** and hit `↵`
 
 
 ```r
@@ -92,31 +117,27 @@ library(tidyverse)
 ## Plot a graph
 - type the code below into the console and hit `↵`
 
+
+
 ```r
 ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   theme_bw(base_size = 16)
 ```
 
-![](01-introduction-slides_files/figure-html/intro-1.svg)&lt;!-- --&gt;
+![](00-preparation-slides_files/figure-html/intro-1.svg)&lt;!-- --&gt;
 
 ---
 # Troubleshooting
 ***
 ## Write me an email
 
-If you had trouble with any of the previous tasks, please write an email to r-tistic@lse.de
+If you had trouble with any of the previous tasks, please write an email to: [r-tistic@lse.de](mailto:r-tistic@lse.de)
 
-Otherwise, see you at the class on Thursday!
+Otherwise, see you at the class on Thursday at Eawag (Room Aqualino) on 16.03.2017 at 01:30 pm.
 
 ![I am so excited!](figures/giphy.gif)
-.footnote[Source of .gif file: http://giphy.com/search/im-so-excited]
-
----
-# Why all of this
-## Open Research
-
-https://twitter.com/RR_Oxford/status/841310011880026113
+.footnote[Source of GIF: http://giphy.com/search/im-so-excited]
     </textarea>
 <script src="remark-lib/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

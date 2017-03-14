@@ -33,7 +33,7 @@ vignettes/*.pdf
 *.knit.md
 
 # blogdown website
-aCourses/libs
+aCourses/libs/
 2017/
 about/
 categories/
@@ -44,3 +44,4 @@ post/
 tags/
 
 
+.Rproj.user

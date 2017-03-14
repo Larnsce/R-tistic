@@ -40,8 +40,8 @@ a, a > code {
 }
 .footnote {
   position: absolute;
-  bottom: 0.1em;
-  padding-right: 4em;
+  bottom: 1em;
+  left: 40px;
   font-size: 50%;
 }
 .remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; }
@@ -92,6 +92,7 @@ a, a > code {
 }
 img {
   max-width: 100%;
+  max-height: 100%;
 }
 blockquote {
   border-left: solid 5px lightgray;
@@ -109,6 +110,10 @@ blockquote {
 }
 .red {
   color: red;
+  font-weight: bold;
+}
+.white {
+  color: white;
   font-weight: bold;
 }
 .big{

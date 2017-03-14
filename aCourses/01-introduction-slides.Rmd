@@ -1,0 +1,115 @@
+---
+title: "R-tistic"
+subtitle: "Introduction to R and RStudio"
+date: March 23, 2017
+author: Lars Schoebitz </br>r-tistic@lse.de
+output:
+  xaringan::moon_reader:
+    css: "r-tistic_theme.css"
+    lib_dir: libs
+    self_contained: FALSE
+    chakra: "remark-lib/remark-latest.min.js"
+    nature:
+      highlightLanguage: R
+      highlightLines: true
+    navigation: 
+      click: true
+    bibliography: systems.bib
+---
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(knitr)
+library(grDevices)
+library(Cairo)
+
+```
+
+```{r download-remark-bib, include=FALSE}
+
+# xaringan::summon_remark(version = "latest", to = "remark-lib/")
+
+```
+
+```{r make-pdf, message=FALSE, warning=FALSE, include=FALSE}
+
+system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/01-introduction-slides.html ~/R/R-tistic/aCourses/01-introduction-slides.pdf")
+
+#system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/slides/sanitation-systems-factsheets-slides.html ~/slides/sanitation-systems-factsheets-slides.pdf")
+
+```
+
+layout: true
+class: theme
+
+---
+# Getting started
+***
+## Download and install R
+
+* Go to http://www.r-project.org
+* Download R for your operating system
+* Install R
+* Bring yourself and your laptop to Eawag (Room Aqualino) on 16.03.2017 at 01:30 pm
+
+
+---
+# Getting started
+***
+## Download and install RStudio
+
+* Go to https://www.rstudio.com
+* Download RStudio for your operating system (Linux, (Mac) OS X, Windows)
+* Install RStudio
+
+---
+
+# Getting started
+***
+## Open RStudio 
+
+- type `print("hello world")` into the Console and hit `↵`
+
+--
+
+Output:
+```{r tidy=FALSE}
+print("hello world")
+```
+
+--
+
+Congrats! You have just written your first R code.
+
+---
+# Getting started
+***
+## Install packages 
+
+- type `install.packages("tidyverse")` into the Console
+    - this installs the R packages: `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr` and `dplyr`
+- type `library(tidyverse)` into the Console and hit `↵`
+
+```{r, echo=TRUE}
+
+library(tidyverse)
+
+```
+
+---
+# Getting started
+***
+## Plot a graph
+- type the code below into the console and hit `↵`
+```{r intro, echo = TRUE, fig.height = 3, fig.width= 8, dev = 'svg'}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  theme_bw(base_size = 16)
+
+```
+
+
+

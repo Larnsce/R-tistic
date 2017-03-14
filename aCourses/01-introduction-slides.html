@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>R-tistic</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Lars Schoebitz r-tistic@lse.de" />
+    <meta name="date" content="2017-03-23" />
+    <link rel="stylesheet" href="r-tistic_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R-tistic
+## Introduction to R and RStudio
+### Lars Schoebitz </br><a href="mailto:r-tistic@lse.de">r-tistic@lse.de</a>
+### March 23, 2017
+
+---
+
+
+
+
+
+
+
+
+layout: true
+class: theme
+
+---
+# Getting started
+***
+## Download and install R
+
+* Go to http://www.r-project.org
+* Download R for your operating system
+* Install R
+* Bring yourself and your laptop to Eawag (Room Aqualino) on 16.03.2017 at 01:30 pm
+
+
+---
+# Getting started
+***
+## Download and install RStudio
+
+* Go to https://www.rstudio.com
+* Download RStudio for your operating system (Linux, (Mac) OS X, Windows)
+* Install RStudio
+
+---
+
+# Getting started
+***
+## Open RStudio 
+
+- type `print("hello world")` into the Console and hit `↵`
+
+--
+
+Output:
+
+```r
+print("hello world")
+```
+
+```
+## [1] "hello world"
+```
+
+--
+
+Congrats! You have just written your first R code.
+
+---
+# Getting started
+***
+## Install packages 
+
+- type `install.packages("tidyverse")` into the Console
+    - this installs the R packages: `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr` and `dplyr`
+- type `library(tidyverse)` into the Console and hit `↵`
+
+
+```r
+library(tidyverse)
+```
+
+---
+# Getting started
+***
+## Plot a graph
+- type the code below into the console and hit `↵`
+
+```r
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  theme_bw(base_size = 16)
+```
+
+![](01-introduction-slides_files/figure-html/intro-1.svg)&lt;!-- --&gt;
+    </textarea>
+<script src="remark-lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "R",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+
+  </body>
+</html>

@@ -24,13 +24,25 @@ https://cran.r-project.org/web/views/NaturalLanguageProcessing.html
 ```{r}
 
 library(tidytext)
+library(dplyr)
 
-dat <- data("stop_words")
+# this is a character vector
 
+text <- c("Because I could not stop for Death -",
+          "He kindly stopped for me -",
+          "The Carriage held but just Ourselves -",
+          "and Immortality")
 
-tidy_books <- tidy_books %>%
-  anti_join(stop_words)
+# save character vector as dataframe with dplyr package
+
+text_df <- dplyr::data_frame(line = 1:4, text = text)
+
+# make dataset tidy by using unnest_tokens function. "word" is the output variable, text is the input variable
+
+text_df %>%
+  unnest_tokens(word, text)
 
 ```
+
 
 

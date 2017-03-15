@@ -43,5 +43,7 @@ images/
 post/
 tags/
 
+# PDF files of slides creates with decktape
+aCourses/*.pdf
 
 .Rproj.user

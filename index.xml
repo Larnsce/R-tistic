@@ -1,35 +1,89 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R-tistic</title>
-    <link>/index.xml</link>
-    <description>Recent content on R-tistic</description>
+    <title>R-tistic Class</title>
+    <link>http://larnsce.github.io/R-tistic/index.xml</link>
+    <description>Recent content on R-tistic Class</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Mar 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://larnsce.github.io/R-tistic/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>R-tistic slides</title>
+      <link>http://larnsce.github.io/R-tistic/slides/</link>
+      <pubDate>Wed, 15 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://larnsce.github.io/R-tistic/slides/</guid>
+      <description>&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#eawag&#34;&gt;Eawag&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#preparation-slides&#34;&gt;Preparation slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction-to-r-and-r-studio&#34;&gt;Introduction to R and R Studio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-visualisation-with-ggplot2&#34;&gt;Data visualisation with ggplot2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;eawag&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Eawag&lt;/h2&gt;
+&lt;p&gt;R classes were given in Duebendorf at the research institute Eawag. During my last year of working at Eawag, I had the great opportunity to attend R classes offered by the University of Zurich and developed a passion that I am excited to share with my former colleagues.&lt;/p&gt;
+&lt;div id=&#34;preparation-slides&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Preparation slides&lt;/h3&gt;
+&lt;p&gt;These slides were prepared in preparation of the first R-tistic class at Eawag in Duebendorf, Switzerland. An HTML version is accessible &lt;a href=&#34;http://bit.ly/2nnt9cw&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;script async class=&#34;speakerdeck-embed&#34; data-id=&#34;2fa5835483ff4a1580f8f63fb3b1910a&#34; data-ratio=&#34;1.77777777777778&#34; src=&#34;//speakerdeck.com/assets/embed.js&#34;&gt;&lt;/script&gt;
+&lt;/div&gt;
+&lt;div id=&#34;introduction-to-r-and-r-studio&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Introduction to R and R Studio&lt;/h3&gt;
+&lt;p&gt;Slides to follow.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-visualisation-with-ggplot2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Data visualisation with ggplot2&lt;/h3&gt;
+&lt;p&gt;Slides to follow.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Resources</title>
+      <link>http://larnsce.github.io/R-tistic/resources/</link>
+      <pubDate>Wed, 15 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://larnsce.github.io/R-tistic/resources/</guid>
+      <description>&lt;p&gt;Soon, you will find additional resources for learning R here.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Preparation for R-tistic class 1</title>
-      <link>/2017/03/14/preparation-for-r-tistic-class-1/</link>
+      <link>http://larnsce.github.io/R-tistic/2017/03/14/preparation-for-r-tistic-class-1/</link>
       <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/03/14/preparation-for-r-tistic-class-1/</guid>
-      <description>
+      <guid>http://larnsce.github.io/R-tistic/2017/03/14/preparation-for-r-tistic-class-1/</guid>
+      <description>&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
 
-&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;
-
-&lt;p&gt;Please follow the instructions on these slides.&lt;/p&gt;
+&lt;!-- BLOGDOWN-BODY-BEFORE --&gt;
+&lt;!-- /BLOGDOWN-BODY-BEFORE --&gt;
+&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting started&lt;/h2&gt;
+&lt;p&gt;Please follow the instructions on &lt;a href=&#34;http://bit.ly/2mXrU2W&#34;&gt;these slides&lt;/a&gt; or see “Slides” at the top.&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title>Welcome</title>
-      <link>/2017/03/01/welcome/</link>
+      <link>http://larnsce.github.io/R-tistic/2017/03/01/welcome/</link>
       <pubDate>Wed, 01 Mar 2017 21:17:37 -0500</pubDate>
       
-      <guid>/2017/03/01/welcome/</guid>
-      <description>&lt;div id=&#34;r-tistic-classes&#34; class=&#34;section level2&#34;&gt;
+      <guid>http://larnsce.github.io/R-tistic/2017/03/01/welcome/</guid>
+      <description>&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;!-- BLOGDOWN-BODY-BEFORE --&gt;
+&lt;!-- /BLOGDOWN-BODY-BEFORE --&gt;
+&lt;div id=&#34;r-tistic-classes&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;R-tistic classes&lt;/h2&gt;
 &lt;p&gt;This website is the primary place for classes, slides, excercises, news resources of the R-tistic classes.&lt;/p&gt;
 &lt;/div&gt;
@@ -38,10 +92,10 @@
     
     <item>
       <title>About</title>
-      <link>/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>http://larnsce.github.io/R-tistic/about/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>http://larnsce.github.io/R-tistic/about/</guid>
       <description>&lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 

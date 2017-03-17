@@ -1,0 +1,15 @@
+base
+swirl
+ggplot2
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+knitr
+Cairo
+gapminder
+gridExtra
+leaflet
+plotly

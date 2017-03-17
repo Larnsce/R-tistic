@@ -4,7 +4,16 @@
     <title>R-tistic</title>
     <meta charset="utf-8">
     <meta name="author" content="Lars Schoebitz r-tistic@lse.de" />
-    <meta name="date" content="2017-03-23" />
+    <meta name="date" content="2017-03-16" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet/leaflet.js"></script>
+    <link href="libs/leafletfix/leafletfix.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding/leaflet.js"></script>
+    <link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="libs/plotlyjs/plotly-latest.min.js"></script>
+    <script src="libs/plotly-binding/plotly.js"></script>
     <link rel="stylesheet" href="r-tistic_theme.css" type="text/css" />
   </head>
   <body>
@@ -14,7 +23,7 @@ class: center, middle, inverse, title-slide
 # R-tistic
 ## Introduction to R and RStudio
 ### Lars Schoebitz </br><a href="mailto:r-tistic@lse.de">r-tistic@lse.de</a>
-### March 23, 2017
+### March 16, 2017
 
 ---
 
@@ -29,9 +38,44 @@ layout: true
 class: theme
 
 ---
-# Getting started
+# Inbox: r-tistic@lse.de
+
+![empty-inbox](figures/empty-inbox.png)
+
+
+--
+
+.large[Did you have any issues with the preparation slides?]
+
+
+---
+## Typographical Conventions
 ***
-## Download and install R
+.small[
+*Italic*  
+Indicates new terms URLs, email addresses, filenames and file extensions.
+
+**Bold**  
+Indicates the names of R Packages.
+
+`Constant width`  
+Used for program listings, as well as within paragraphs to refer to program elements such as variable or function names, databases, data types, environment variables, statements, and keywords.
+
+**`Constant width bold`**  
+Shows commands or other text that should be typed literally by the user.
+
+*`Constant width italic`*  
+Shows text that should be replaced with user-supplied values or by values determined by context.
+]
+
+.footnote[
+[taken from: Wickham, Grolemund, R for Data Science](http://bit.ly/2n0YYah)
+]
+
+---
+## Getting started
+***
+### Download and install R
 
 * Go to http://www.r-project.org
 * Download R for your operating system
@@ -40,9 +84,9 @@ class: theme
 
 
 ---
-# Getting started
+## Getting started
 ***
-## Download and install RStudio
+### Download and install RStudio
 
 * Go to https://www.rstudio.com
 * Download RStudio for your operating system (Linux, (Mac) OS X, Windows)
@@ -50,9 +94,9 @@ class: theme
 
 ---
 
-# Getting started
+## Getting started
 ***
-## Open RStudio 
+### Open RStudio 
 
 - type `print("hello world")` into the Console and hit `↵`
 
@@ -73,9 +117,9 @@ print("hello world")
 Congrats! You have just written your first R code.
 
 ---
-# Getting started
+## Getting started
 ***
-## Install packages 
+### Install packages 
 
 - type `install.packages("tidyverse")` into the Console
     - this installs the R packages: `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr` and `dplyr`
@@ -87,23 +131,26 @@ library(tidyverse)
 ```
 
 ---
-# Getting started
+## Getting started
 ***
-## Plot a graph
+### Plot a graph
 - type the code below into the console and hit `↵`
 
+
 ```r
-ggplot(mpg, aes(x = displ, y = hwy)) +
+g1 &lt;- ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   theme_bw(base_size = 16)
+
+g1
 ```
 
 ![](01-introduction-slides_files/figure-html/intro-1.svg)&lt;!-- --&gt;
 
 ---
-# Troubleshooting
+## Troubleshooting
 ***
-## Write me an email
+### Write me an email
 
 If you had trouble with any of the previous tasks, please write an email to r-tistic@lse.de
 
@@ -113,10 +160,542 @@ Otherwise, see you at the class on Thursday!
 .footnote[Source of .gif file: http://giphy.com/search/im-so-excited]
 
 ---
-# Why all of this
-## Open Research
+## R-tistic
+***
+### Overview
 
-https://twitter.com/RR_Oxford/status/841310011880026113
+1. Introduction to R and RStudio
+    - basics of data visualisation 
+    - basics of reproducible research
+2. Basics of data manipulation
+3. Basics of using R for statistical analyses
+4. Basics of Git, GitHub and collaborative programming
+5. Advanced classes of the above
+
+
+---
+## Why use R?
+***
+
+- R is able to perform every type data analyses.
+- R is free and open source.
+- R is a language and is interactive.
+- R produces amazing graphics.
+- R has a fast growing user network.
+- …and many more reasons.
+
+---
+## Why use R?
+***
+### Data Analyses
+  
+- why do we analyse data?
+    - to summarise data in tables and graphs.
+    - to explore relationships in data by using statistical analysis.
+    - to visualise data for publications.
+    - to get answers for our questions.
+  
+---
+## Why use R?
+***
+### Data Analyses
+
+.pull-left[  
+- what types of data analyses do you know?
+    - descriptive
+    - exploratory
+    - inferential
+    - predictive
+    - causal
+    - mechanistic
+- nothing that's not possible in R
+]
+
+.pull-right[
+- read...
+
+![](figures/leek-elements-data-style.png)
+]
+
+.footnote[
+[Jeff Leek: The Elements of Data Analytic Style](http://bit.ly/2eojZpq)
+]
+
+---
+## Why use R?
+***
+### Data Visualisation
+
+.big[
+Talk:  
+[Stefanie Posavec on Data Visualization at Awwwards Conference London](http://bit.ly/2ndtMFf)
+]
+
+.big[
+Great resource:  
+[Data visualisation catalogue](http://bit.ly/2jVa6RT)
+]
+
+.big[
+Another great resource:  
+[R Graph Gallery](http://bit.ly/2nqR6je)
+]
+
+---
+## Why use R?
+***
+### Data Visualisation
+
+Maps with **leaflet** package.
+
+<div id="htmlwidget-258f712f875ff9f67f18" style="width:828px;height:360px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-258f712f875ff9f67f18">{"x":{"calls":[{"method":"addTiles","args":["http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap\u003c/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA\u003c/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+
+.footnote[
+[Click here to learn more!](http://bit.ly/2ntsVNJ)
+]
+
+---
+## Why use R?
+***
+### Data Visualisation
+Interactive plots with **plotly** package.
+
+<div id="htmlwidget-a763a61fcf748f23fc78" style="width:828px;height:396px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a763a61fcf748f23fc78">{"x":{"data":[{"x":[1.8,1.8,2,2,2.8,2.8,3.1,1.8,1.8,2,2,2.8,2.8,3.1,3.1,2.8,3.1,4.2,5.3,5.3,5.3,5.7,6,5.7,5.7,6.2,6.2,7,5.3,5.3,5.7,6.5,2.4,2.4,3.1,3.5,3.6,2.4,3,3.3,3.3,3.3,3.3,3.3,3.8,3.8,3.8,4,3.7,3.7,3.9,3.9,4.7,4.7,4.7,5.2,5.2,3.9,4.7,4.7,4.7,5.2,5.7,5.9,4.7,4.7,4.7,4.7,4.7,4.7,5.2,5.2,5.7,5.9,4.6,5.4,5.4,4,4,4,4,4.6,5,4.2,4.2,4.6,4.6,4.6,5.4,5.4,3.8,3.8,4,4,4.6,4.6,4.6,4.6,5.4,1.6,1.6,1.6,1.6,1.6,1.8,1.8,1.8,2,2.4,2.4,2.4,2.4,2.5,2.5,3.3,2,2,2,2,2.7,2.7,2.7,3,3.7,4,4.7,4.7,4.7,5.7,6.1,4,4.2,4.4,4.6,5.4,5.4,5.4,4,4,4.6,5,2.4,2.4,2.5,2.5,3.5,3.5,3,3,3.5,3.3,3.3,4,5.6,3.1,3.8,3.8,3.8,5.3,2.5,2.5,2.5,2.5,2.5,2.5,2.2,2.2,2.5,2.5,2.5,2.5,2.5,2.5,2.7,2.7,3.4,3.4,4,4.7,2.2,2.2,2.4,2.4,3,3,3.5,2.2,2.2,2.4,2.4,3,3,3.3,1.8,1.8,1.8,1.8,1.8,4.7,5.7,2.7,2.7,2.7,3.4,3.4,4,4,2,2,2,2,2.8,1.9,2,2,2,2,2.5,2.5,2.8,2.8,1.9,1.9,2,2,2.5,2.5,1.8,1.8,2,2,2.8,2.8,3.6],"y":[29,29,31,30,26,26,27,26,25,28,27,25,25,25,25,24,25,23,20,15,20,17,17,26,23,26,25,24,19,14,15,17,27,30,26,29,26,24,24,22,22,24,24,17,22,21,23,23,19,18,17,17,19,19,12,17,15,17,17,12,17,16,18,15,16,12,17,17,16,12,15,16,17,15,17,17,18,17,19,17,19,19,17,17,17,16,16,17,15,17,26,25,26,24,21,22,23,22,20,33,32,32,29,32,34,36,36,29,26,27,30,31,26,26,28,26,29,28,27,24,24,24,22,19,20,17,12,19,18,14,15,18,18,15,17,16,18,17,19,19,17,29,27,31,32,27,26,26,25,25,17,17,20,18,26,26,27,28,25,25,24,27,25,26,23,26,26,26,26,25,27,25,27,20,20,19,17,20,17,29,27,31,31,26,26,28,27,29,31,31,26,26,27,30,33,35,37,35,15,18,20,20,22,17,19,18,20,29,26,29,29,24,44,29,26,29,29,29,29,23,24,44,41,29,26,28,29,29,29,28,29,26,26,26],"text":["displ: 1.8<br>hwy: 29","displ: 1.8<br>hwy: 29","displ: 2<br>hwy: 31","displ: 2<br>hwy: 30","displ: 2.8<br>hwy: 26","displ: 2.8<br>hwy: 26","displ: 3.1<br>hwy: 27","displ: 1.8<br>hwy: 26","displ: 1.8<br>hwy: 25","displ: 2<br>hwy: 28","displ: 2<br>hwy: 27","displ: 2.8<br>hwy: 25","displ: 2.8<br>hwy: 25","displ: 3.1<br>hwy: 25","displ: 3.1<br>hwy: 25","displ: 2.8<br>hwy: 24","displ: 3.1<br>hwy: 25","displ: 4.2<br>hwy: 23","displ: 5.3<br>hwy: 20","displ: 5.3<br>hwy: 15","displ: 5.3<br>hwy: 20","displ: 5.7<br>hwy: 17","displ: 6<br>hwy: 17","displ: 5.7<br>hwy: 26","displ: 5.7<br>hwy: 23","displ: 6.2<br>hwy: 26","displ: 6.2<br>hwy: 25","displ: 7<br>hwy: 24","displ: 5.3<br>hwy: 19","displ: 5.3<br>hwy: 14","displ: 5.7<br>hwy: 15","displ: 6.5<br>hwy: 17","displ: 2.4<br>hwy: 27","displ: 2.4<br>hwy: 30","displ: 3.1<br>hwy: 26","displ: 3.5<br>hwy: 29","displ: 3.6<br>hwy: 26","displ: 2.4<br>hwy: 24","displ: 3<br>hwy: 24","displ: 3.3<br>hwy: 22","displ: 3.3<br>hwy: 22","displ: 3.3<br>hwy: 24","displ: 3.3<br>hwy: 24","displ: 3.3<br>hwy: 17","displ: 3.8<br>hwy: 22","displ: 3.8<br>hwy: 21","displ: 3.8<br>hwy: 23","displ: 4<br>hwy: 23","displ: 3.7<br>hwy: 19","displ: 3.7<br>hwy: 18","displ: 3.9<br>hwy: 17","displ: 3.9<br>hwy: 17","displ: 4.7<br>hwy: 19","displ: 4.7<br>hwy: 19","displ: 4.7<br>hwy: 12","displ: 5.2<br>hwy: 17","displ: 5.2<br>hwy: 15","displ: 3.9<br>hwy: 17","displ: 4.7<br>hwy: 17","displ: 4.7<br>hwy: 12","displ: 4.7<br>hwy: 17","displ: 5.2<br>hwy: 16","displ: 5.7<br>hwy: 18","displ: 5.9<br>hwy: 15","displ: 4.7<br>hwy: 16","displ: 4.7<br>hwy: 12","displ: 4.7<br>hwy: 17","displ: 4.7<br>hwy: 17","displ: 4.7<br>hwy: 16","displ: 4.7<br>hwy: 12","displ: 5.2<br>hwy: 15","displ: 5.2<br>hwy: 16","displ: 5.7<br>hwy: 17","displ: 5.9<br>hwy: 15","displ: 4.6<br>hwy: 17","displ: 5.4<br>hwy: 17","displ: 5.4<br>hwy: 18","displ: 4<br>hwy: 17","displ: 4<br>hwy: 19","displ: 4<br>hwy: 17","displ: 4<br>hwy: 19","displ: 4.6<br>hwy: 19","displ: 5<br>hwy: 17","displ: 4.2<br>hwy: 17","displ: 4.2<br>hwy: 17","displ: 4.6<br>hwy: 16","displ: 4.6<br>hwy: 16","displ: 4.6<br>hwy: 17","displ: 5.4<br>hwy: 15","displ: 5.4<br>hwy: 17","displ: 3.8<br>hwy: 26","displ: 3.8<br>hwy: 25","displ: 4<br>hwy: 26","displ: 4<br>hwy: 24","displ: 4.6<br>hwy: 21","displ: 4.6<br>hwy: 22","displ: 4.6<br>hwy: 23","displ: 4.6<br>hwy: 22","displ: 5.4<br>hwy: 20","displ: 1.6<br>hwy: 33","displ: 1.6<br>hwy: 32","displ: 1.6<br>hwy: 32","displ: 1.6<br>hwy: 29","displ: 1.6<br>hwy: 32","displ: 1.8<br>hwy: 34","displ: 1.8<br>hwy: 36","displ: 1.8<br>hwy: 36","displ: 2<br>hwy: 29","displ: 2.4<br>hwy: 26","displ: 2.4<br>hwy: 27","displ: 2.4<br>hwy: 30","displ: 2.4<br>hwy: 31","displ: 2.5<br>hwy: 26","displ: 2.5<br>hwy: 26","displ: 3.3<br>hwy: 28","displ: 2<br>hwy: 26","displ: 2<br>hwy: 29","displ: 2<br>hwy: 28","displ: 2<br>hwy: 27","displ: 2.7<br>hwy: 24","displ: 2.7<br>hwy: 24","displ: 2.7<br>hwy: 24","displ: 3<br>hwy: 22","displ: 3.7<br>hwy: 19","displ: 4<br>hwy: 20","displ: 4.7<br>hwy: 17","displ: 4.7<br>hwy: 12","displ: 4.7<br>hwy: 19","displ: 5.7<br>hwy: 18","displ: 6.1<br>hwy: 14","displ: 4<br>hwy: 15","displ: 4.2<br>hwy: 18","displ: 4.4<br>hwy: 18","displ: 4.6<br>hwy: 15","displ: 5.4<br>hwy: 17","displ: 5.4<br>hwy: 16","displ: 5.4<br>hwy: 18","displ: 4<br>hwy: 17","displ: 4<br>hwy: 19","displ: 4.6<br>hwy: 19","displ: 5<br>hwy: 17","displ: 2.4<br>hwy: 29","displ: 2.4<br>hwy: 27","displ: 2.5<br>hwy: 31","displ: 2.5<br>hwy: 32","displ: 3.5<br>hwy: 27","displ: 3.5<br>hwy: 26","displ: 3<br>hwy: 26","displ: 3<br>hwy: 25","displ: 3.5<br>hwy: 25","displ: 3.3<br>hwy: 17","displ: 3.3<br>hwy: 17","displ: 4<br>hwy: 20","displ: 5.6<br>hwy: 18","displ: 3.1<br>hwy: 26","displ: 3.8<br>hwy: 26","displ: 3.8<br>hwy: 27","displ: 3.8<br>hwy: 28","displ: 5.3<br>hwy: 25","displ: 2.5<br>hwy: 25","displ: 2.5<br>hwy: 24","displ: 2.5<br>hwy: 27","displ: 2.5<br>hwy: 25","displ: 2.5<br>hwy: 26","displ: 2.5<br>hwy: 23","displ: 2.2<br>hwy: 26","displ: 2.2<br>hwy: 26","displ: 2.5<br>hwy: 26","displ: 2.5<br>hwy: 26","displ: 2.5<br>hwy: 25","displ: 2.5<br>hwy: 27","displ: 2.5<br>hwy: 25","displ: 2.5<br>hwy: 27","displ: 2.7<br>hwy: 20","displ: 2.7<br>hwy: 20","displ: 3.4<br>hwy: 19","displ: 3.4<br>hwy: 17","displ: 4<br>hwy: 20","displ: 4.7<br>hwy: 17","displ: 2.2<br>hwy: 29","displ: 2.2<br>hwy: 27","displ: 2.4<br>hwy: 31","displ: 2.4<br>hwy: 31","displ: 3<br>hwy: 26","displ: 3<br>hwy: 26","displ: 3.5<br>hwy: 28","displ: 2.2<br>hwy: 27","displ: 2.2<br>hwy: 29","displ: 2.4<br>hwy: 31","displ: 2.4<br>hwy: 31","displ: 3<br>hwy: 26","displ: 3<br>hwy: 26","displ: 3.3<br>hwy: 27","displ: 1.8<br>hwy: 30","displ: 1.8<br>hwy: 33","displ: 1.8<br>hwy: 35","displ: 1.8<br>hwy: 37","displ: 1.8<br>hwy: 35","displ: 4.7<br>hwy: 15","displ: 5.7<br>hwy: 18","displ: 2.7<br>hwy: 20","displ: 2.7<br>hwy: 20","displ: 2.7<br>hwy: 22","displ: 3.4<br>hwy: 17","displ: 3.4<br>hwy: 19","displ: 4<br>hwy: 18","displ: 4<br>hwy: 20","displ: 2<br>hwy: 29","displ: 2<br>hwy: 26","displ: 2<br>hwy: 29","displ: 2<br>hwy: 29","displ: 2.8<br>hwy: 24","displ: 1.9<br>hwy: 44","displ: 2<br>hwy: 29","displ: 2<br>hwy: 26","displ: 2<br>hwy: 29","displ: 2<br>hwy: 29","displ: 2.5<br>hwy: 29","displ: 2.5<br>hwy: 29","displ: 2.8<br>hwy: 23","displ: 2.8<br>hwy: 24","displ: 1.9<br>hwy: 44","displ: 1.9<br>hwy: 41","displ: 2<br>hwy: 29","displ: 2<br>hwy: 26","displ: 2.5<br>hwy: 28","displ: 2.5<br>hwy: 29","displ: 1.8<br>hwy: 29","displ: 1.8<br>hwy: 29","displ: 2<br>hwy: 28","displ: 2<br>hwy: 29","displ: 2.8<br>hwy: 26","displ: 2.8<br>hwy: 26","displ: 3.6<br>hwy: 26"],"key":null,"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","name":""}],"layout":{"margin":{"t":38.2197064040152,"r":10.6268161062682,"b":65.7896524397147,"l":54.1967621419676},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":21.2536322125363},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[1.33,7.27],"ticktext":["2","3","4","5","6","7"],"tickvals":[2,3,4,5,6,7],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":5.31340805313408,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":17.0029057700291},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"displ","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":21.2536322125363},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[10.4,45.6],"ticktext":["20","30","40"],"tickvals":[20,30,40],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":5.31340805313408,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":17.0029057700291},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"hwy","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":21.2536322125363},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":17.0029057700291}},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"modeBarButtonsToRemove":["sendDataToCloud"]},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+
+.footnote[
+[Learn more about plotly](http://bit.ly/2n2Acqm)
+]
+
+---
+## Why use R?
+***
+### Data Visualisation
+
+<div id="htmlwidget-05fc7ba7624850acf4b6" style="width:792px;height:396px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05fc7ba7624850acf4b6">{"x":{"data":[{"x":[0.60625,1.60625,2.60625,3.60625,4.60625],"y":[210,96,84,205,146],"text":["count: 210<br>cut: Fair<br>clarity: I1","count: 96<br>cut: Good<br>clarity: I1","count: 84<br>cut: Very Good<br>clarity: I1","count: 205<br>cut: Premium<br>clarity: I1","count: 146<br>cut: Ideal<br>clarity: I1"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"I1","legendgroup":"I1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"},{"x":[0.71875,1.71875,2.71875,3.71875,4.71875],"y":[466,1081,2100,2949,2598],"text":["count: 466<br>cut: Fair<br>clarity: SI2","count: 1081<br>cut: Good<br>clarity: SI2","count: 2100<br>cut: Very Good<br>clarity: SI2","count: 2949<br>cut: Premium<br>clarity: SI2","count: 2598<br>cut: Ideal<br>clarity: SI2"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(205,150,0,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"SI2","legendgroup":"SI2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"},{"x":[0.83125,1.83125,2.83125,3.83125,4.83125],"y":[408,1560,3240,3575,4282],"text":["count: 408<br>cut: Fair<br>clarity: SI1","count: 1560<br>cut: Good<br>clarity: SI1","count: 3240<br>cut: Very Good<br>clarity: SI1","count: 3575<br>cut: Premium<br>clarity: SI1","count: 4282<br>cut: Ideal<br>clarity: SI1"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"SI1","legendgroup":"SI1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"},{"x":[0.94375,1.94375,2.94375,3.94375,4.94375],"y":[261,978,2591,3357,5071],"text":["count: 261<br>cut: Fair<br>clarity: VS2","count: 978<br>cut: Good<br>clarity: VS2","count: 2591<br>cut: Very Good<br>clarity: VS2","count: 3357<br>cut: Premium<br>clarity: VS2","count: 5071<br>cut: Ideal<br>clarity: VS2"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(0,190,103,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"VS2","legendgroup":"VS2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"},{"x":[1.05625,2.05625,3.05625,4.05625,5.05625],"y":[170,648,1775,1989,3589],"text":["count: 170<br>cut: Fair<br>clarity: VS1","count: 648<br>cut: Good<br>clarity: VS1","count: 1775<br>cut: Very Good<br>clarity: VS1","count: 1989<br>cut: Premium<br>clarity: VS1","count: 3589<br>cut: Ideal<br>clarity: VS1"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"VS1","legendgroup":"VS1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"},{"x":[1.16875,2.16875,3.16875,4.16875,5.16875],"y":[69,286,1235,870,2606],"text":["count: 69<br>cut: Fair<br>clarity: VVS2","count: 286<br>cut: Good<br>clarity: VVS2","count: 1235<br>cut: Very Good<br>clarity: VVS2","count: 870<br>cut: Premium<br>clarity: VVS2","count: 2606<br>cut: Ideal<br>clarity: VVS2"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(0,169,255,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"VVS2","legendgroup":"VVS2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"},{"x":[1.28125,2.28125,3.28125,4.28125,5.28125],"y":[17,186,789,616,2047],"text":["count: 17<br>cut: Fair<br>clarity: VVS1","count: 186<br>cut: Good<br>clarity: VVS1","count: 789<br>cut: Very Good<br>clarity: VVS1","count: 616<br>cut: Premium<br>clarity: VVS1","count: 2047<br>cut: Ideal<br>clarity: VVS1"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"VVS1","legendgroup":"VVS1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"},{"x":[1.39375,2.39375,3.39375,4.39375,5.39375],"y":[9,71,268,230,1212],"text":["count: 9<br>cut: Fair<br>clarity: IF","count: 71<br>cut: Good<br>clarity: IF","count: 268<br>cut: Very Good<br>clarity: IF","count: 230<br>cut: Premium<br>clarity: IF","count: 1212<br>cut: Ideal<br>clarity: IF"],"key":null,"type":"bar","marker":{"autocolorscale":false,"color":"rgba(255,97,204,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"IF","legendgroup":"IF","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text"}],"layout":{"margin":{"t":42.5670402656704,"r":13.2835201328352,"b":81.0294728102947,"l":88.9995848899959},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":26.5670402656704},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[0.4,5.6],"ticktext":["Fair","Good","Very Good","Premium","Ideal"],"tickvals":[1,2,3,4,5],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":6.6417600664176,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":21.2536322125363},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"cut","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":26.5670402656704},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[-253.55,5324.55],"ticktext":["0","1000","2000","3000","4000","5000"],"tickvals":[0,1000,2000,3000,4000,5000],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":6.6417600664176,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":21.2536322125363},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"count","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":26.5670402656704},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":21.2536322125363},"y":0.892627057981389},"annotations":[{"text":"clarity","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":26.5670402656704},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"barmode":"stack","bargap":0,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"modeBarButtonsToRemove":["sendDataToCloud"]},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+
+
+.footnote[
+[Learn more about htmlwidgets in R](http://bit.ly/2mS8MCO)
+]
+
+---
+## Why use R?
+***
+### More than 10'000 other packages
+.big[
+Nice curated list of R packages here:   
+[Awesome R](http://bit.ly/2ncQ2Pw)
+]
+---
+## Why use R?
+***
+### Because R Markdown!
+
+- fully reproducible documents in all formats
+    - HTML
+    - PDF
+    - MS Word
+    - HTML5 slides
+    - Tufte-style handouts
+    - books
+    - dashboards
+    - shiny applications
+    - scientific articles
+    - websites
+    - ...
+
+.footnote[
+[Click here to learn more](http://bit.ly/2nbLxF3)
+]
+
+---
+## R Markdown
+***
+### Install R Markdown
+
+- type `install.packages("rmarkdown")` into the Console and hit `↵`
+
+--
+
+- go to `File -&gt; New File -&gt; R Markdown...`
+
+--
+
+![](figures/r-markdown-document.png)
+
+---
+## RMarkdown
+***
+### Tutorial
+
+Follow the instructions on the screen.
+
+---
+## Why use R?
+***
+### Open...
+
+.pull-left[
+- open access
+- open data
+- open research
+- open science
+- open government
+]
+
+--
+
+.pull-right[
+- open university
+- open learning
+- open education
+- open source
+- open everywhere
+]
+
+---
+## Open Data
+***
+### Everywhere
+
+.footnote[
+[Open Data Twitter List](http://bit.ly/2mOjbzo)
+]
+
+.pull-left[
+- [European Data Portal](http://bit.ly/2msPXne)
+- [Open Data Zurich](http://bit.ly/2mZXFYV)
+- [World Bank DataBank](http://bit.ly/2nnLG8J)
+- [World Bank Microdata Library](http://bit.ly/2nanRAx)
+- [rOpenSci Community](http://bit.ly/2kh46qg)
+- [Stats South Africa](http://bit.ly/2nsHpxw)
+- [ArcGis opendata](http://arcg.is/2n03cip) 
+- [Open Knowledge International](http://bit.ly/2msKCeQ)
+- [Gapminder](http://bit.ly/2nnJC0y)
+]
+
+--
+
+.pull-right[
+![](figures/european-open-data-portal.png)
+]
+
+--
+
+.large[
+.center[But, what to do with all of this?]
+]
+
+---
+## Data
+***
+### Fuel Economy Data
+
+- type **`?mpg`** into the Console
+
+--
+
+.center[
+.large[ 
+What is this dataset about?
+]
+]
+
+
+```
+## # A tibble: 6 &lt;U+00D7&gt; 11
+##   manufacturer model displ  year   cyl      trans   drv   cty   hwy    fl
+##          &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;      &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
+## 1         audi    a4   1.8  1999     4   auto(l5)     f    18    29     p
+## 2         audi    a4   1.8  1999     4 manual(m5)     f    21    29     p
+## 3         audi    a4   2.0  2008     4 manual(m6)     f    20    31     p
+## 4         audi    a4   2.0  2008     4   auto(av)     f    21    30     p
+## 5         audi    a4   2.8  1999     6   auto(l5)     f    16    26     p
+## 6         audi    a4   2.8  1999     6 manual(m5)     f    18    26     p
+## # ... with 1 more variables: class &lt;chr&gt;
+```
+
+
+---
+## Data
+***
+### Gapminder
+
+- type **`?gapminder`** into the Console
+
+--
+
+- type **`??gapminder`** into the Console
+
+--
+
+- use **`Google`**
+
+--
+
+- type **`install.packages("gapminder")`** into the Console
+
+--
+
+- type **`?gapminder`** into the Console
+
+.footnote[
+[Gapminder Homepage. Please visit!](http://bit.ly/2nnJC0y)  
+]
+
+---
+## Data
+***
+### Gapminder
+
+- type **`library(gapminder)`** into the Console
+- type **`str(gapminder)`** into the Console
+
+--
+
+
+```r
+library(gapminder)
+
+str(gapminder)
+```
+
+```
+## Classes 'tbl_df', 'tbl' and 'data.frame':	1704 obs. of  6 variables:
+##  $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+##  $ gdpPercap: num  779 821 853 836 740 ...
+```
+
+
+---
+## Data
+***
+### Diamonds
+
+- type **`?diamonds`** into the Console
+
+--
+
+- what is the dataset about?
+
+--
+
+- type **diamonds** into the Console
+
+--
+
+
+```r
+diamonds
+```
+
+```
+## # A tibble: 53,940 &lt;U+00D7&gt; 10
+##    carat       cut color clarity depth table price     x     y     z
+##    &lt;dbl&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1   0.23     Ideal     E     SI2  61.5    55   326  3.95  3.98  2.43
+## 2   0.21   Premium     E     SI1  59.8    61   326  3.89  3.84  2.31
+## 3   0.23      Good     E     VS1  56.9    65   327  4.05  4.07  2.31
+## 4   0.29   Premium     I     VS2  62.4    58   334  4.20  4.23  2.63
+## 5   0.31      Good     J     SI2  63.3    58   335  4.34  4.35  2.75
+## 6   0.24 Very Good     J    VVS2  62.8    57   336  3.94  3.96  2.48
+## 7   0.24 Very Good     I    VVS1  62.3    57   336  3.95  3.98  2.47
+## 8   0.26 Very Good     H     SI1  61.9    55   337  4.07  4.11  2.53
+## 9   0.22      Fair     E     VS2  65.1    61   337  3.87  3.78  2.49
+## 10  0.23 Very Good     H     VS1  59.4    61   338  4.00  4.05  2.39
+## # ... with 53,930 more rows
+```
+
+
+---
+## R and RStudio
+***
+### First steps with Software Carpentry
+
+Please go to the following website and follow through the instructions until you reach the challenges at the bottom of the page.
+
+.superlarge[
+.center[
+[Software Carpentry](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/)
+]
+]
+
+---
+## R and RStudio
+***
+### First steps with swirl package
+
+.pull-left[
+Learn R, in R. 
+
+- open the [swirl website](http://bit.ly/2mKAY9c)
+- click on learn
+    - Step 1: Done that
+    - Step 2: Done that too
+    - Step 3: Install swirl
+    - Step 4: Start swirl
+    - Step 5: ...
+]
+
+.pull-right[
+![swirl](figures/swirl-instructions.png)
+]
+
+
+---
+## RStudio
+***
+### Start your first script
+
+- go to `File -&gt; New File -&gt; R Script...`
+
+![r-script](figures/r-script.png)
+
+---
+## RStudio
+***
+### Overview
+
+![](figures/r-studio-overview.png)
+---
+## RStudio
+***
+### Themes
+
+![](figures/r-studio-theme.png)
+---
+## RStudio
+***
+### Themes
+
+![](figures/r-studio-theme-2.png)
+
+---
+## RStudio
+***
+### The # key and rm(list = ls())
+
+![](figures/r-script-use-hash.png)
+
+---
+## R Scripts
+***
+### Why using scripts?
+
+- we could do everything in the console, so why bother using a script?
+- record of what you did and why (includes comments after #)
+- allows you to quickly repeat the analysis and make changes
+- the code in the console will not be saved, but you can save the script
+
+---
+## R Scripts
+***
+### Workflow
+
+- type code into the Script
+- add notes after # to remember what you are doing
+- run the code (select it and then Ctrl + R or cmd + enter)
+- if it’s not working, edit the Script and run it again
+- save the final Script including comments
+- the script can be reused at any time 
+
+---
+## R Scripts
+***
+### Write your first script
+
+- write the preparation code into a script
+
+--
+
+keep in mind:
+
+--
+
+- make comments
+- load necessary libraries
+--
+
+- save your script file
+- make sure you remember where and the name
+- close RStudio (do not save the workspace)
+- find and open your Script
+- remember keyboard shortcuts:
+- ctrl + A / cmd + A
+- ctrl + R / cmd + enter
+
+
+
+---
+## Replication and Reproducibility
+***
+### Replication
+
+- focuses on the validity of the scientific claim
+- "Is this claim true?"
+- the ultimate standard for strengthening scientific evidence
+- new investigators, data, analytical methods, laboratories, instruments, etc.
+- particularly important in studies that can impact broad policy or regulatory decisions
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+Additional reading:
+[Jon Zelner - Reproducibility starts at home](http://bit.ly/2m0KwQo) [A manifesto for reproducible science](http://go.nature.com/2jm3QSx) [@jtleek and @rdpeng: Reproducible research can still be wrong](http://bit.ly/2msDe37 )
+]
+
+---
+## Replication and Reproducibility
+***
+### Reproducibility
+
+- focuses on the validity of the data analysis
+- "can we trust this analysis?"
+- arguably a minimum standard for any scientific study
+- new investigators, same data, same methods
+- important when replication is impossible
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+]
+
+---
+## Replication and Reproducibility
+***
+### Background and underlying trends
+
+- some studies cannot be replicated: no time, no money, unique/opportunistic
+- technology is increasing data collection throughput; data are more complex and high-dimensional
+- existing databases can be merged to become bigger databases (but data are used off-label)
+- computing power allows more sophisticated analyses, even on "small" data
+- for every field "X" there is a "Computational X"
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+]
+
+---
+## Replication and Reproducibility
+***
+### The result?
+
+
+- even basic analyses are difficult to describe
+- heavy computational requirements are thrust upon people without adequate training in statistics and computing
+- errors are more easily introduced into long analysis pipelines
+- knowledge transfer is inhibited
+- results are difficult to replicate or reproduce
+- complicated analyses cannot be trusted
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+]
     </textarea>
 <script src="remark-lib/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

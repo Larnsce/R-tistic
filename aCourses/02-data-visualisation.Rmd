@@ -1,0 +1,598 @@
+---
+title: "R-tistic"
+subtitle: "Data Visualisation with ggplot2"
+date: March 16, 2017
+author: Lars Schoebitz </br>r-tistic@lse.de
+output:
+  xaringan::moon_reader:
+    css: "r-tistic_theme.css"
+    lib_dir: libs
+    self_contained: FALSE
+    chakra: "remark-lib/remark-latest.min.js"
+    nature:
+      highlightLanguage: R
+      highlightLines: true
+    navigation: 
+      click: true
+    bibliography: systems.bib
+---
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(knitr)
+library(grDevices)
+library(Cairo)
+library(gapminder)
+
+```
+
+```{r download-remark-bib, include=FALSE}
+
+# xaringan::summon_remark(version = "latest", to = "remark-lib/")
+
+```
+
+```{r make-pdf, message=FALSE, warning=FALSE, include=FALSE}
+
+# system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/01-introduction-slides.html ~/R/R-tistic/aCourses/01-introduction-slides.pdf")
+
+#system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/slides/sanitation-systems-factsheets-slides.html ~/slides/sanitation-systems-factsheets-slides.pdf")
+
+```
+
+layout: true
+class: theme
+
+---
+## ggplot2
+***
+### Key components
+
+Every ggplot2 plot has three key components:
+
+1. **data**
+2. A set of **aesthetic mappings** between variables in the data and visual properties, and
+3. At lest one layer which describes how to render each observation. Layers are usually created with a **geom** function.
+
+.footnote[
+taken from: Wickham, Hadley. “Getting Started with ggplot2.” In ggplot2, 11–31. Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2. [(link)](http://bit.ly/2muDLCd)
+]
+
+---
+## ggplot2
+***
+### Example
+
+- type the code below into the console and hit `↵`
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +  
+  geom_point()
+
+```
+
+--
+
+```{r intro, echo=FALSE, fig.height=3, fig.width=8, dev='svg', cache=TRUE}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() 
+
+```
+
+
+---
+## ggplot2
+***
+### What does the function do?
+
+--
+
+1. Data: `mpg` dataset, which is build into ggplot2.
+2. Aesthetic mapping: engine size mapped to x position, fuel economy to y position.
+3. Layer: points.
+
+--
+
+Also being referred to as a scatterplot.
+
+.footnote[
+taken from: Wickham, Hadley. “Getting Started with ggplot2.” In ggplot2, 11–31. Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2. [(link)](http://bit.ly/2muDLCd)
+]
+
+---
+## ggplot 2
+***
+### Exercises
+
+- type the code below into the console and hit `↵`
+
+```{r, eval=FALSE}
+
+ggplot(gapminder, aes(country, lifeExp)) +  
+  geom_point()
+
+```
+
+--
+
+- what does the plot show?
+
+```{r intro-2, echo=FALSE, fig.height=3, fig.width=8, dev='svg', cache=TRUE}
+
+ggplot(gapminder, aes(country, lifeExp)) +  
+  geom_point()
+
+
+```
+
+---
+## ggplot 2
+***
+### Exercises
+
+
+```{r, eval=FALSE}
+
+ggplot(gapminder, aes(country, lifeExp)) +  
+  geom_point()
+
+```
+
+
+```{r ggplot-1, echo=FALSE, fig.height=5, fig.width=8, dev='svg', cache=TRUE}
+
+ggplot(gapminder, aes(x = lifeExp, y = country)) +  
+  geom_point()
+
+```
+
+---
+## ggplot 2
+***
+### Exercises
+
+```{r, eval=FALSE}
+ggplot(gapminder, aes(x = country, y = lifeExp)) +  
+  geom_point() +
+  coord_flip()
+```
+
+
+```{r intro-3, echo=FALSE, fig.height=4.5, fig.width=8, dev='svg', cache=TRUE}
+
+ggplot(gapminder, aes(x = country, y = lifeExp)) +  
+  geom_point() +
+  coord_flip()
+
+```
+
+---
+## ggplot 2
+***
+### Exercises: Make a scatterplot
+
+1. Data: `diamonds` dataset, which is build into ggplot2.
+2. Aesthetic mapping: carat mapped to x position, price mapped to y position.
+3. Layer: points.
+
+--
+
+```{r, eval=FALSE}
+
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+```
+
+---
+## ggplot 2
+***
+### Exercises: Make a scatterplot
+
+```{r intro-4, echo=FALSE, fig.height=4, fig.width=8, dev='CairoSVG', cache = TRUE}
+
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+```
+
+---
+## ggplot 2
+***
+### Aesthetic Attributes
+
+- add colour, shape or size to `aes()` 
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(x = displ, y = cty, colour = class)) +
+  geom_point()
+
+```
+
+--
+
+```{r mpg-aes-colour, echo=FALSE, fig.height=3, fig.width=8, dev='CairoSVG'}
+
+ggplot(mpg, aes(x = displ, y = cty, colour = class)) +
+  geom_point() 
+
+```
+
+
+---
+## ggplot 2
+***
+### Aesthetic Attributes
+
+- map shape instead of colour
+- then map size instead of colour
+- what happens?
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(x = displ, y = cty, shape = class)) +
+  geom_point() 
+
+```
+
+---
+## ggplot 2
+***
+### Warnings
+
+```{r mpg-aes-shape, fig.height=2, fig.width=8, warning=TRUE, dev='CairoSVG'}
+
+ggplot(mpg, aes(x = displ, y = cty, shape = class)) +
+  geom_point() 
+
+```
+
+---
+## ggplot 2
+***
+### Warnings
+
+```{r mpg-aes-size, fig.height=3, fig.width=8, warning=TRUE, dev='CairoSVG', cache=TRUE}
+
+ggplot(mpg, aes(x = displ, y = cty, size = class)) +
+  geom_point() 
+
+```
+
+---
+# Variables
+***
+### Discrete, continous and categorical
+
+- colour and shape work well with categorical variables
+- size works well for continous variables
+- ...
+
+---
+## ggplot 2
+***
+### Exercise
+
+- type the code below into the console and hit `↵`
+- compare the two plots
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(colour = blue))
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(colour = blue)
+
+```
+
+---
+## ggplot 2
+***
+### Exercise
+
+```{r mpg-aes-colour-geom, echo=FALSE, fig.height=4, fig.width=9, warning=TRUE, cache=TRUE, dev='CairoSVG'}
+
+library(gridExtra)
+
+g1 <- ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(colour = "blue"))
+
+g2 <- ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(colour = "blue")
+
+grid.arrange(g1, g2, ncol = 2)
+
+
+```
+
+---
+## ggplot 2
+***
+### Facetting
+
+- another technique to display additional categorical variables on a plot
+- type the code below into the console and hit `↵`
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  facet_wrap(~class)
+
+```
+
+- what can you see?
+
+---
+## ggplot 2
+***
+### Facetting
+
+- what can you see?
+
+```{r mpg-facetting, echo=FALSE, fig.height=4, fig.width=9, warning=TRUE, cache=TRUE, dev='CairoSVG'}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  facet_wrap(~class)
+
+```
+
+---
+## ggplot 2
+***
+### Plot Geoms
+
+- geom_smooth
+- geom_boxplot
+- geom_histogram
+- geom_bar
+- geom_path
+- geom_line
+
+---
+## ggplot 2
+***
+### geom_smooth()
+
+Make a scatterplot using the `mpg` dataset with the aesthetic mappings engine size and fuel economy position. Then add a smoother.
+
+--
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +  
+  geom_point() +
+  geom_smooth()
+
+```
+
+--
+
+```{r mpg-smooth, echo=FALSE, fig.height=3, fig.width=8, message=FALSE, warning=FALSE, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+
+```
+
+---
+## ggplot 2
+***
+### geom_smooth() span
+
+```{r mpg-smooth-span-1, echo=TRUE, fig.height=3, fig.width=8, message=FALSE, warning=FALSE, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(span = 0.2)
+
+```
+
+---
+## ggplot 2
+***
+### geom_smooth() span
+
+```{r mpg-smooth-span-2, echo=TRUE, fig.height=3, fig.width=8, message=FALSE, warning=FALSE, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(span = 1)
+
+```
+
+---
+## ggplot 2
+***
+### geom_smooth() linear model
+
+```{r mpg-smooth-lm, echo=TRUE, fig.height=3, fig.width=8, message=FALSE, warning=FALSE, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+```
+
+---
+## ggplot 2
+***
+### Boxplots and Jittered points
+
+```{r mpg-point-1, echo=FALSE, fig.height=3, fig.width=8, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_point() +
+  theme_bw(base_size = 24)
+
+```
+
+--
+
+- few unique values (lots of overplotting)
+    - geom_jitter
+    - geom_boxplot
+    - geom_violin
+    
+---
+## ggplot 2
+***
+### Boxplots, Jittered Points and Violin Plots
+
+```{r mpg-jitter-box-violin, echo=FALSE, fig.height=3, fig.width=8, cache=TRUE, dev='svg'}
+
+g_jitter <- ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_jitter() +
+  theme_bw(base_size = 24)
+
+g_boxplot <- ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_boxplot() +
+  theme_bw(base_size = 24)
+
+g_viloin <- ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_violin() +
+  theme_bw(base_size = 24)
+
+grid.arrange(g_jitter, g_boxplot, g_viloin, nrow = 1)
+
+```
+
+---
+## ggplot 2
+***
+### Histograms 
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(hwy)) +
+  geom_histogram() 
+
+```
+
+--
+
+```{r mpg-histogram-1, echo=FALSE, fig.height=3, fig.width=8, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(hwy)) +
+  geom_histogram() 
+
+```
+
+---
+## ggplot 2
+***
+### Histograms 
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(hwy)) +
+  geom_histogram(binwidth = 2.5) 
+
+```
+
+--
+
+```{r mpg-histogram, echo=FALSE, fig.height=3, fig.width=8, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(hwy)) +
+  geom_histogram(binwidth = 2.5) 
+
+```
+
+---
+## ggplot 2
+***
+### Frequency Polygons 
+
+```{r, eval=FALSE}
+
+ggplot(mpg, aes(hwy)) +
+  geom_freqpoly() 
+
+```
+
+--
+
+```{r mpg-freq-poly, echo=FALSE, fig.height=3, fig.width=8, cache=TRUE, dev='svg'}
+
+ggplot(mpg, aes(hwy)) +
+  geom_freqpoly() 
+
+```
+
+
+
+---
+## ggplot 2
+***
+### Frequency Polygons and Histograms
+
+```{r, echo=FALSE, fig.height=6, fig.width=12, message=FALSE, warning=FALSE}
+
+library(gridExtra)
+
+g_freq <- ggplot(mpg, aes(displ, colour = drv)) +
+  geom_freqpoly(binwidth = 0.5) +
+  theme_bw(base_size = 20)
+
+g_hist <- ggplot(mpg, aes(displ, fill = drv)) +
+  geom_histogram(binwidth = 0.5)  +
+  facet_wrap(~drv, ncol = 1) +
+  theme_bw(base_size = 20)
+
+grid.arrange(g_freq, g_hist, ncol = 2)
+
+```
+
+
+---
+## Library
+***
+### GridExtra
+
+- install package gridExtra
+- load package gridExtra into your script
+
+--
+
+```{r, eval=FALSE}
+
+library(gridExtra)
+
+g_freq <- ggplot(mpg, aes(displ, colour = drv)) +
+  geom_freqpoly(binwidth = 0.5) +
+  theme_bw(base_size = 20)
+
+g_hist <- ggplot(mpg, aes(displ, fill = drv)) +
+  geom_histogram(binwidth = 0.5)  +
+  facet_wrap(~drv, ncol = 1) +
+  theme_bw(base_size = 20)
+
+grid.arrange(g_freq, g_hist, ncol = 2)
+
+```
+
+---
+## Next steps
+***
+### Learn more and have fun!
+
+.big[
+[Try R Codeschool](http://bit.ly/2nrWfHQ)
+]
+
+.big[
+[Hadley Wickham - R for Data Science](http://bit.ly/2n0YYah)
+]
+
+...and if you have questions, just write me and email:    [r-tistic@lse.de](r-tistic@lse.de)
+
+

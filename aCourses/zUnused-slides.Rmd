@@ -1,0 +1,82 @@
+---
+title: "R-tistic"
+subtitle: "Introduction to R and RStudio"
+date: March 16, 2017
+author: Lars Schoebitz </br>r-tistic@lse.de
+output:
+  xaringan::moon_reader:
+    css: "r-tistic_theme.css"
+    lib_dir: libs
+    self_contained: FALSE
+    chakra: "remark-lib/remark-latest.min.js"
+    nature:
+      highlightLanguage: R
+      highlightLines: true
+    navigation: 
+      click: true
+    bibliography: systems.bib
+---
+
+## Replication and Reproducibility
+***
+### Replication
+
+- focuses on the validity of the scientific claim
+- "Is this claim true?"
+- the ultimate standard for strengthening scientific evidence
+- new investigators, data, analytical methods, laboratories, instruments, etc.
+- particularly important in studies that can impact broad policy or regulatory decisions
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+Additional reading:
+[Jon Zelner - Reproducibility starts at home](http://bit.ly/2m0KwQo) [A manifesto for reproducible science](http://go.nature.com/2jm3QSx) [@jtleek and @rdpeng: Reproducible research can still be wrong](http://bit.ly/2msDe37 )
+]
+
+---
+## Replication and Reproducibility
+***
+### Reproducibility
+
+- focuses on the validity of the data analysis
+- "can we trust this analysis?"
+- arguably a minimum standard for any scientific study
+- new investigators, same data, same methods
+- important when replication is impossible
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+]
+
+---
+## Replication and Reproducibility
+***
+### Background and underlying trends
+
+- some studies cannot be replicated: no time, no money, unique/opportunistic
+- technology is increasing data collection throughput; data are more complex and high-dimensional
+- existing databases can be merged to become bigger databases (but data are used off-label)
+- computing power allows more sophisticated analyses, even on "small" data
+- for every field "X" there is a "Computational X"
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+]
+
+---
+## Replication and Reproducibility
+***
+### The result?
+
+
+- even basic analyses are difficult to describe
+- heavy computational requirements are thrust upon people without adequate training in statistics and computing
+- errors are more easily introduced into long analysis pipelines
+- knowledge transfer is inhibited
+- results are difficult to replicate or reproduce
+- complicated analyses cannot be trusted
+
+.footnote[
+Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
+]
+

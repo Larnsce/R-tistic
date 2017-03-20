@@ -20,10 +20,18 @@ output:
 ```{r setup, include=FALSE}
 
 options(htmltools.dir.version = FALSE)
+
+# Load libraries  -------------------------------------------------
+
 library(tidyverse)
 library(knitr)
 library(grDevices)
 library(Cairo)
+
+# Set up plotly account  -------------------------------------------------
+
+Sys.setenv(plotly_username = "larnsce")
+Sys.setenv(plotly_api_key = "ShAAshkEbrcp21MxwZZc")
 
 ```
 
@@ -35,131 +43,14 @@ library(Cairo)
 
 ```{r make-pdf, message=FALSE, warning=FALSE, include=FALSE}
 
-# system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/01-introduction-slides.html ~/R/R-tistic/aCourses/01-introduction-slides.pdf")
+## print slides as PDF document
 
-#system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/slides/sanitation-systems-factsheets-slides.html ~/slides/sanitation-systems-factsheets-slides.pdf")
+# system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/01-introduction-slides.html ~/R/R-tistic/aCourses/01-introduction-slides.pdf")
 
 ```
 
 layout: true
 class: theme
-
----
-# Inbox: r-tistic@lse.de
-
-![empty-inbox](figures/empty-inbox.png)
-
-
---
-
-.large[Did you have any issues with the preparation slides?]
-
-
----
-## Typographical Conventions
-***
-.small[
-*Italic*  
-Indicates new terms URLs, email addresses, filenames and file extensions.
-
-**Bold**  
-Indicates the names of R Packages.
-
-`Constant width`  
-Used for program listings, as well as within paragraphs to refer to program elements such as variable or function names, databases, data types, environment variables, statements, and keywords.
-
-**`Constant width bold`**  
-Shows commands or other text that should be typed literally by the user.
-
-*`Constant width italic`*  
-Shows text that should be replaced with user-supplied values or by values determined by context.
-]
-
-.footnote[
-[taken from: Wickham, Grolemund, R for Data Science](http://bit.ly/2n0YYah)
-]
-
----
-## Getting started
-***
-### Download and install R
-
-* Go to http://www.r-project.org
-* Download R for your operating system
-* Install R
-* Bring yourself and your laptop to Eawag (Room Aqualino) on 16.03.2017 at 01:30 pm
-
-
----
-## Getting started
-***
-### Download and install RStudio
-
-* Go to https://www.rstudio.com
-* Download RStudio for your operating system (Linux, (Mac) OS X, Windows)
-* Install RStudio
-
----
-
-## Getting started
-***
-### Open RStudio 
-
-- type `print("hello world")` into the Console and hit `↵`
-
---
-
-Output:
-```{r tidy=FALSE}
-print("hello world")
-```
-
---
-
-Congrats! You have just written your first R code.
-
----
-## Getting started
-***
-### Install packages 
-
-- type `install.packages("tidyverse")` into the Console
-    - this installs the R packages: `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr` and `dplyr`
-- type `library(tidyverse)` into the Console and hit `↵`
-
-```{r, echo=TRUE}
-
-library(tidyverse)
-
-```
-
----
-## Getting started
-***
-### Plot a graph
-- type the code below into the console and hit `↵`
-
-```{r intro, echo = TRUE, fig.height = 3, fig.width= 8, dev = 'svg'}
-
-g1 <- ggplot(mpg, aes(x = displ, y = hwy)) +
-  geom_point() +
-  theme_bw(base_size = 16)
-
-g1
-
-```
-
----
-## Troubleshooting
-***
-### Write me an email
-
-If you had trouble with any of the previous tasks, please write an email to r-tistic@lse.de
-
-Otherwise, see you at the class on Thursday!
-
-![I am so excited!](figures/giphy.gif)
-.footnote[Source of .gif file: http://giphy.com/search/im-so-excited]
 
 ---
 ## R-tistic
@@ -246,9 +137,7 @@ Another great resource:
 ---
 ## Why use R?
 ***
-### Data Visualisation
-
-Maps with **leaflet** package.
+### Maps with **leaflet** package.
 
 ```{r leaflet, echo=FALSE, fig.height= 5, fig.width= 11.5}
 
@@ -257,6 +146,7 @@ library(leaflet)
 m <- leaflet() %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+
 m  # Print the map
 
 ```
@@ -268,17 +158,19 @@ m  # Print the map
 ---
 ## Why use R?
 ***
-### Data Visualisation
-Interactive plots with **plotly** package.
+### Interactive plots with **plotly** package
 
-```{r plotly, echo=FALSE, fig.height=5.5, fig.width=11.5, message=FALSE, warning=FALSE}
+<iframe width="800" height="500" frameborder="0" scrolling="no" src="//plot.ly/~larnsce/5.embed"></iframe>
+
+
+```{r plotly, eval=FALSE, fig.height=5.5, fig.width=11.5, message=FALSE, warning=FALSE, include=FALSE}
 
 library(plotly)
  
 # Let's make it interactive using the ggplotly function !
 g2 <- ggplotly(g1)
 
-g2
+plotly_POST(g2, filename = "mpg-ggplot2")
 
 ```
 
@@ -289,9 +181,11 @@ g2
 ---
 ## Why use R?
 ***
-### Data Visualisation
+### Interactive plots with **plotly** package
 
-```{r, echo=FALSE, fig.height=5.5, fig.width=11}
+<iframe width="800" height="500" frameborder="0" scrolling="no" src="//plot.ly/~larnsce/3.embed"></iframe>
+
+```{r, eval=FALSE, fig.height=5.5, fig.width=11, include=FALSE}
 
 library(ggplot2)
 library(plotly)
@@ -300,7 +194,12 @@ p3 <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
             geom_bar(position = "dodge") +
   theme_bw(base_size = 20)
 
-ggplotly(p3)
+plot <- ggplotly(p3)
+
+plotly_POST(plot, filename = "diamonds-plot")
+
+
+
 
 ```
 
@@ -308,6 +207,8 @@ ggplotly(p3)
 .footnote[
 [Learn more about htmlwidgets in R](http://bit.ly/2mS8MCO)
 ]
+
+
 
 ---
 ## Why use R?
@@ -357,9 +258,9 @@ Nice curated list of R packages here:
 ---
 ## RMarkdown
 ***
-### Tutorial
+### Live Tutorial
 
-Follow the instructions on the screen.
+...
 
 ---
 ## Why use R?
@@ -544,6 +445,15 @@ Learn R, in R.
 ![swirl](figures/swirl-instructions.png)
 ]
 
+---
+## R and RStudio
+***
+### First steps with R Codeschool
+
+.large[
+Great way to learn R:  
+[http://tryr.codeschool.com](http://bit.ly/2nrWfHQ)
+]
 
 ---
 ## RStudio
@@ -629,69 +539,6 @@ keep in mind:
 
 
 
----
-## Replication and Reproducibility
-***
-### Replication
-
-- focuses on the validity of the scientific claim
-- "Is this claim true?"
-- the ultimate standard for strengthening scientific evidence
-- new investigators, data, analytical methods, laboratories, instruments, etc.
-- particularly important in studies that can impact broad policy or regulatory decisions
-
-.footnote[
-Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
-Additional reading:
-[Jon Zelner - Reproducibility starts at home](http://bit.ly/2m0KwQo) [A manifesto for reproducible science](http://go.nature.com/2jm3QSx) [@jtleek and @rdpeng: Reproducible research can still be wrong](http://bit.ly/2msDe37 )
-]
-
----
-## Replication and Reproducibility
-***
-### Reproducibility
-
-- focuses on the validity of the data analysis
-- "can we trust this analysis?"
-- arguably a minimum standard for any scientific study
-- new investigators, same data, same methods
-- important when replication is impossible
-
-.footnote[
-Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
-]
-
----
-## Replication and Reproducibility
-***
-### Background and underlying trends
-
-- some studies cannot be replicated: no time, no money, unique/opportunistic
-- technology is increasing data collection throughput; data are more complex and high-dimensional
-- existing databases can be merged to become bigger databases (but data are used off-label)
-- computing power allows more sophisticated analyses, even on "small" data
-- for every field "X" there is a "Computational X"
-
-.footnote[
-Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
-]
-
----
-## Replication and Reproducibility
-***
-### The result?
-
-
-- even basic analyses are difficult to describe
-- heavy computational requirements are thrust upon people without adequate training in statistics and computing
-- errors are more easily introduced into long analysis pipelines
-- knowledge transfer is inhibited
-- results are difficult to replicate or reproduce
-- complicated analyses cannot be trusted
-
-.footnote[
-Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
-]
 
 
 

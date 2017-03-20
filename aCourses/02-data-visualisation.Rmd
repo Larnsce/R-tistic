@@ -36,9 +36,10 @@ library(gapminder)
 
 ```{r make-pdf, message=FALSE, warning=FALSE, include=FALSE}
 
-# system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/01-introduction-slides.html ~/R/R-tistic/aCourses/01-introduction-slides.pdf")
+## print slides as PDF document
 
-#system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/slides/sanitation-systems-factsheets-slides.html ~/slides/sanitation-systems-factsheets-slides.pdf")
+system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/02-data-visualisation.html ~/R/R-tistic/aCourses/02-data-visualisation.pdf")
+
 
 ```
 
@@ -593,6 +594,6 @@ grid.arrange(g_freq, g_hist, ncol = 2)
 [Hadley Wickham - R for Data Science](http://bit.ly/2n0YYah)
 ]
 
-...and if you have questions, just write me and email:    [r-tistic@lse.de](r-tistic@lse.de)
+...and if you have questions, just write me an email: [r-tistic@lse.de](r-tistic@lse.de)
 
 

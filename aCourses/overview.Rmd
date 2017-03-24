@@ -29,8 +29,6 @@ knitr::opts_chunk$set(echo = TRUE)
 - Data Wrangling/Cleaning
 - Data visualisation
 
-[GapMinder, GoogleVis](http://www.datasciencecentral.com/profiles/blogs/gapminder-data-visualization-using-googlevis-and-r)
-
 [Color selection, Color Brewer](http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=6)
 
 - Data presentation documents

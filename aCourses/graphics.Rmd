@@ -1,0 +1,18 @@
+---
+title: "Graphics and Gifs"
+author: "Lars Schoebitz"
+date: "22 March 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Document for a selection of graphics and gifs for use in slides.
+
+![Learn dplyr functions](figures/IMG_3146 copy.png)
+
+![Panda gif](figures/panda.gif)
+
+![Eawag Excel Tweet](figures/Eawag_RDM_Excel_Tweet.png)

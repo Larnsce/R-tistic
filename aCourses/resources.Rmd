@@ -268,6 +268,7 @@ $$
 # dplyr
 
 [lesser known dplyr tricks](http://www.brodrigues.co/blog/2017-02-17-lesser_known_tricks/)
+
 [learn about the case_when function](https://rud.is/b/2017/03/10/making-a-case-for-case_when/)
 
 # tidyr
@@ -386,3 +387,7 @@ This tutorial is brilliant. In total it took me XX hours to reproduce all the ex
 # R teaching material
 
 [Teaching Material Repo](http://lgatto.github.io/TeachingMaterial/)
+
+# Data from Google sheets
+
+[Reading data from google sheets into R](http://bit.ly/2kwIEtk)

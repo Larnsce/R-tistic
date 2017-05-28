@@ -38,7 +38,7 @@ library(gapminder)
 
 ## print slides as PDF document
 
-system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/02-data-visualisation.html ~/R/R-tistic/aCourses/02-data-visualisation.pdf")
+# system("~/decktape-1.0.0/phantomjs ~/decktape-1.0.0/decktape.js ~/R/R-tistic/aCourses/02-data-visualisation.html ~/R/R-tistic/aCourses/02-data-visualisation.pdf")
 
 
 ```

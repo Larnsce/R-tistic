@@ -9,8 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
 # Introduction
 - questionnaire
   - expereince
@@ -23,8 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Data gathering
   - googlesheets
-  
-[Reading data from google sheets into R](http://bit.ly/2kwIEtk)
+
+
 - Data analyisis
 - Data Wrangling/Cleaning
 - Data visualisation
@@ -73,6 +71,7 @@ Alt + Shift + K
 
 
 ## dplyr
+
 ## tidyr
 
 # Data visualisation

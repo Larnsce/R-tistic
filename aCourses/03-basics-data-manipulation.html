@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>R-tistic</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Lars Schoebitz r-tistic@lse.de" />
+    <meta name="date" content="2017-06-15" />
+    <link rel="stylesheet" href="r-tistic_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R-tistic
+## Basics of Data Manipulation
+### Lars Schoebitz </br><a href="mailto:r-tistic@lse.de">r-tistic@lse.de</a>
+### June 15, 2017
+
+---
+
+
+
+
+
+
+
+
+layout: true
+class: theme
+
+---
+## R-tistic
+***
+### Overview
+
+1. Introduction to R and RStudio
+    - basics of data visualisation 
+    - basics of reproducible research  
+2. **Basics of data manipulation**
+3. Basics of using R for statistical analyses
+4. Basics of Git, GitHub and collaborative programming
+5. Advanced classes of the above
+
+---
+## Last course
+***
+### Basics of data visualisation
+
+![](03-basics-data-manipulation_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+--
+
+What have you worked on between then (16.03.2017) and today?
+
+---
+## Practice,...
+***
+### ...practice, practice. 
+
+&gt; But while you should expect to be a little frustrated, take comfort in that it’s both typical and temporary: it happens to everyone, and the only way to get over it is to keep trying. - Hadley Wickham (R for Data science)
+
+
+Use Hadley's book. It's available freely online. [(link)](http://bit.ly/2n0YYah)
+
+Use online resources. They are freely available online.   
+[(link to R Codeschool)](http://bit.ly/2nrWfHQ)
+[(link to Software Carepentry)](http://bit.ly/2r9Z6Eu)
+
+Read blogs. The R community is growing steadily.
+[(link to R-Bloggers)](http://bit.ly/2qrHrqI)
+
+Get help!
+[(link to Stack Overflow)](http://bit.ly/2rLnvmm)
+
+Ask questions on our very own Slack channel.
+[(link to Slack)](http://bit.ly/rtisticslack)
+
+
+---
+## Motivation
+*** 
+### Read some articles by other researchers
+
+&gt; “You need to learn how to talk to R so you can do some basic things before you get to the cool modelling.” - [Auriel Fournier](http://bit.ly/2r9RgdJ)
+
+&gt; For example, scientists need to be comfortable opening and creating data files or creating subsets of data before starting to run analyses. - [Monya Baker (Scientific computing: Code alert)](http://go.nature.com/2qtEXXL)
+
+
+---
+## Motivation
+***
+### Definitely read this one!
+
+![better science](figures/better-science-less-time.png)
+
+[link](http://go.nature.com/2rciLWm)
+
+---
+## Learn tricks
+***
+### Keyboard shortcuts for today
+
+.big[cmd (ctrl) + shift + M]  
+
+.big[alt + -] 
+
+.big[ctrl + 1] 
+
+.big[ctrl + 2] 
+
+Now press Alt-Shift-K
+
+---
+## Coding basics
+***
+### Use R as a calculator
+
+You can use R as a calculator. Type some commands into the console.
+
+
+```r
+10 * 35 / 20 
+```
+
+```
+## [1] 17.5
+```
+
+```r
+(10 + 50 + 4.5) * 80 / 10
+```
+
+```
+## [1] 516
+```
+
+```r
+sin(pi / 2)
+```
+
+```
+## [1] 1
+```
+
+---
+## Coding basics
+***
+### Create objects with &lt;-
+
+
+```r
+x &lt;- sqrt(64)
+```
+
+`object_name &lt;- value`
+
+This is an assingment statement. You can read it as "object name gets value".
+
+--
+
+**Remember the shortcut: alt + -** 
+
+
+---
+## Coding basics
+***
+### Object names
+
+- must start with a letter, 
+- can only contain letters, numbers, _ and ., 
+- should be descriptive,
+- and therefore require a convention for multiple words
+
+    i_use_snake_case  
+    otherPeopleUseCamelCase  
+    some.people-use.periods  
+    And_aFew.People_RENOUNCEconventions  
+    
+More on code style: ...
+
+---
+## Auto-complete
+***
+### Inspect an object
+
+Make another object
+
+
+```r
+this_is_a_very_long_name &lt;- 2.5
+```
+
+Now, type "this" into the Console and then press Tab.
+
+---
+## Be precise
+***
+### Make another object
+
+
+```r
+r_is_cool &lt;- 10 ^ 5
+```
+
+Inspect it:
+
+`R_is_cool` 
+
+`r_is_coll`
+
+Case matters. Typos matter.
+
+---
+## Calling Functions
+***
+### 
+
+R has a large collection of built-in functions that are called like this:
+
+`function_name(arg1 = val1, arg2 = val2)`
+
+
+---
+## Calling Functions
+***
+### seq()
+
+- Type `se` and hit Tab.
+
+--
+
+
+```r
+seq(1, 10)
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+
+---
+## Making assingments
+***
+### 
+
+If make an assignment, then you don't see the value. 
+
+
+```r
+y &lt;- seq(1, 10, length.out = 5)
+```
+
+--
+
+Double-check the result by typing the object name and hit enter.
+
+
+```r
+y
+```
+
+```
+## [1]  1.00  3.25  5.50  7.75 10.00
+```
+
+---
+## Environment
+***
+### Check it out
+
+![](figures/global-environment.png)
+---
+## Data Transformation
+***
+### Prerequisites
+
+- start an R script or an R Markdown file (for thos who are familiar)
+- install and load the `nycflights13` package
+- install and load the `tidyverse`
+
+---
+## nycflights13
+***
+### Explore a bit!
+
+Data from: The data comes from the [US Bureau of Transportation Statistics](http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&amp;Link=0).
+
+- use `?flights` to access the help file of the dataset
+- type `flights` into the console
+- use `ggplot2` to make some graphs
+
+---
+## nycflights13
+***
+### What have you explored?
+
+
+http://gph.is/1eLpJRZ
+
+---
+## nycflights13
+***
+### hi
+
+
+
+```r
+# remove unneeded colums
+
+mtcars %&gt;% 
+    select(-disp) %&gt;% 
+    head()
+```
+
+```
+##                    mpg cyl  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6 105 2.76 3.460 20.22  1  0    3    1
+```
+
+```r
+# re-order columns
+
+mtcars %&gt;% 
+    select(cyl, disp, hp, everything()) %&gt;% 
+    head()
+```
+
+```
+##                   cyl disp  hp  mpg drat    wt  qsec vs am gear carb
+## Mazda RX4           6  160 110 21.0 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       6  160 110 21.0 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          4  108  93 22.8 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      6  258 110 21.4 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   8  360 175 18.7 3.15 3.440 17.02  0  0    3    2
+## Valiant             6  225 105 18.1 2.76 3.460 20.22  1  0    3    1
+```
+
+```r
+# rename columns
+
+mtcars &lt;- rename(mtcars, spam_mpg = mpg)
+mtcars &lt;- rename(mtcars, spam_disp = disp)
+mtcars &lt;- rename(mtcars, spam_hp = hp)
+
+# Selecting columns with a regexp
+
+mtcars %&gt;% 
+    select(contains("spam")) %&gt;% 
+    head()
+```
+
+```
+##                   spam_mpg spam_disp spam_hp
+## Mazda RX4             21.0       160     110
+## Mazda RX4 Wag         21.0       160     110
+## Datsun 710            22.8       108      93
+## Hornet 4 Drive        21.4       258     110
+## Hornet Sportabout     18.7       360     175
+## Valiant               18.1       225     105
+```
+
+```r
+# take also a look at starts_with(), ends_with(), contains(), matches(), #num_range(), one_of() and everything().
+
+# Create new columns with mutate() and if_else()
+
+mtcars %&gt;% 
+    mutate(vs_new = if_else(
+        vs == 1, 
+        "one", 
+        "zero", 
+        NA_character_)) %&gt;% 
+    head()
+```
+
+```
+##   spam_mpg cyl spam_disp spam_hp drat    wt  qsec vs am gear carb vs_new
+## 1     21.0   6       160     110 3.90 2.620 16.46  0  1    4    4   zero
+## 2     21.0   6       160     110 3.90 2.875 17.02  0  1    4    4   zero
+## 3     22.8   4       108      93 3.85 2.320 18.61  1  1    4    1    one
+## 4     21.4   6       258     110 3.08 3.215 19.44  1  0    3    1    one
+## 5     18.7   8       360     175 3.15 3.440 17.02  0  0    3    2   zero
+## 6     18.1   6       225     105 2.76 3.460 20.22  1  0    3    1    one
+```
+
+```r
+# case_when
+
+
+mtcars %&gt;% 
+    mutate(carb_new = case_when(.$carb == 1 ~ "one",
+                                .$carb == 2 ~ "two",
+                                .$carb == 4 ~ "four",
+                                 TRUE ~ "other")) %&gt;% 
+    head(15)
+```
+
+```
+##    spam_mpg cyl spam_disp spam_hp drat    wt  qsec vs am gear carb
+## 1      21.0   6     160.0     110 3.90 2.620 16.46  0  1    4    4
+## 2      21.0   6     160.0     110 3.90 2.875 17.02  0  1    4    4
+## 3      22.8   4     108.0      93 3.85 2.320 18.61  1  1    4    1
+## 4      21.4   6     258.0     110 3.08 3.215 19.44  1  0    3    1
+## 5      18.7   8     360.0     175 3.15 3.440 17.02  0  0    3    2
+## 6      18.1   6     225.0     105 2.76 3.460 20.22  1  0    3    1
+## 7      14.3   8     360.0     245 3.21 3.570 15.84  0  0    3    4
+## 8      24.4   4     146.7      62 3.69 3.190 20.00  1  0    4    2
+## 9      22.8   4     140.8      95 3.92 3.150 22.90  1  0    4    2
+## 10     19.2   6     167.6     123 3.92 3.440 18.30  1  0    4    4
+## 11     17.8   6     167.6     123 3.92 3.440 18.90  1  0    4    4
+## 12     16.4   8     275.8     180 3.07 4.070 17.40  0  0    3    3
+## 13     17.3   8     275.8     180 3.07 3.730 17.60  0  0    3    3
+## 14     15.2   8     275.8     180 3.07 3.780 18.00  0  0    3    3
+## 15     10.4   8     472.0     205 2.93 5.250 17.98  0  0    3    4
+##    carb_new
+## 1      four
+## 2      four
+## 3       one
+## 4       one
+## 5       two
+## 6       one
+## 7      four
+## 8       two
+## 9       two
+## 10     four
+## 11     four
+## 12    other
+## 13    other
+## 14    other
+## 15     four
+```
+
+
+[lesser known dplyr tricks](http://bit.ly/2qsht6i)
+
+[learn about the case_when function](https://rud.is/b/2017/03/10/making-a-case-for-case_when/)
+
+.footnote[]
+
+
+---
+## Data processing
+***
+###
+
+[Data processing workflow by ZevRoss](http://zevross.com/blog/2015/01/13/a-new-data-processing-workflow-for-r-dplyr-magrittr-tidyr-ggplot2/?utm_content=bufferd51d0&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer)
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+### 
+
+
+
+---
+## 
+***
+###
+    </textarea>
+<script src="remark-lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "R",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

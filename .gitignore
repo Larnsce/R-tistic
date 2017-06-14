@@ -45,5 +45,11 @@ tags/
 
 # PDF files of slides creates with decktape
 aCourses/*.pdf
+aCourses/*.html
+
 
 .Rproj.user
+
+# general file types (R Markdown output)
+
+

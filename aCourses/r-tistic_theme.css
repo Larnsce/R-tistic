@@ -124,6 +124,11 @@ blockquote {
 .large {
   font-size: 150%;
 }
+.task {
+  font-size: 150%;
+  font-weight: bold;
+  color: gray;
+}
 .superduperlarge {
   font-size: 700%;
   font-weight: bold;

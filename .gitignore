@@ -47,6 +47,8 @@ tags/
 aCourses/*.pdf
 aCourses/*.html
 
+.html
+
 
 .Rproj.user
 

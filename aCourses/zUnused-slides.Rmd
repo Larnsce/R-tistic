@@ -80,3 +80,48 @@ Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
 Slide taken from: [@jtleek and @rdpeng](http://bit.ly/2n03MfN)
 ]
 
+
+
+---
+## Final exercise
+***
+### Solutions
+
+Find all flights that departed in summer (July, August, and September).
+
+```{r}
+
+flights %>% 
+  filter(month == 7 & 8 & 9)
+
+
+```
+
+---
+## Final exercise
+***
+### Solutions
+
+Find all flights that departed in summer (July, August, and September).
+
+```{r}
+
+flights %>% 
+  filter(month == c(7, 8, 9))
+
+
+```
+
+---
+## Final exercise
+***
+### Solutions
+
+```{r}
+
+filter(flights, between(month, 7, 9))
+
+```
+
+
+

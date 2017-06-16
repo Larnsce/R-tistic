@@ -40,7 +40,7 @@ Every ggplot2 plot has three key components:
 3. At lest one layer which describes how to render each observation. Layers are usually created with a **geom** function.
 
 .footnote[
-taken from: Wickham, Hadley. “Getting Started with ggplot2.” In ggplot2, 11–31. Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2. [(link)](http://bit.ly/2muDLCd)
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
 ]
 
 ---
@@ -60,6 +60,9 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ![](02-data-visualisation_files/figure-html/intro-1.svg)&lt;!-- --&gt;
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot2
@@ -77,7 +80,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 Also being referred to as a scatterplot.
 
 .footnote[
-taken from: Wickham, Hadley. “Getting Started with ggplot2.” In ggplot2, 11–31. Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2. [(link)](http://bit.ly/2muDLCd)
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
 ]
 
 ---
@@ -98,6 +101,7 @@ ggplot(gapminder, aes(country, lifeExp)) +
 - what does the plot show?
 
 ![](02-data-visualisation_files/figure-html/intro-2-1.svg)&lt;!-- --&gt;
+
 
 ---
 ## ggplot 2
@@ -146,6 +150,10 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point()
 ```
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+
 ---
 ## ggplot 2
 ***
@@ -170,6 +178,9 @@ ggplot(mpg, aes(x = displ, y = cty, colour = class)) +
 
 ![](02-data-visualisation_files/figure-html/mpg-aes-colour-1.svg)&lt;!-- --&gt;
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -185,6 +196,10 @@ ggplot(mpg, aes(x = displ, y = cty, colour = class)) +
 ggplot(mpg, aes(x = displ, y = cty, shape = class)) +
   geom_point() 
 ```
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -235,6 +250,10 @@ ggplot(mpg, aes(x = displ, y = cty, size = class)) +
 - size works well for continous variables
 - ...
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+
 ---
 ## ggplot 2
 ***
@@ -252,12 +271,20 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point(colour = blue)
 ```
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+
 ---
 ## ggplot 2
 ***
 ### Exercise
 
 ![](02-data-visualisation_files/figure-html/mpg-aes-colour-geom-1.svg)&lt;!-- --&gt;
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -276,6 +303,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 - what can you see?
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+
 ---
 ## ggplot 2
 ***
@@ -284,6 +315,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 - what can you see?
 
 ![](02-data-visualisation_files/figure-html/mpg-facetting-1.svg)&lt;!-- --&gt;
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -317,6 +352,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ![](02-data-visualisation_files/figure-html/mpg-smooth-1.svg)&lt;!-- --&gt;
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+
 ---
 ## ggplot 2
 ***
@@ -330,6 +369,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 ```
 
 ![](02-data-visualisation_files/figure-html/mpg-smooth-span-1-1.svg)&lt;!-- --&gt;
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -345,6 +388,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ![](02-data-visualisation_files/figure-html/mpg-smooth-span-2-1.svg)&lt;!-- --&gt;
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+
 ---
 ## ggplot 2
 ***
@@ -358,6 +405,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 ```
 
 ![](02-data-visualisation_files/figure-html/mpg-smooth-lm-1.svg)&lt;!-- --&gt;
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -373,12 +424,20 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
     - geom_boxplot
     - geom_violin
     
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+    
 ---
 ## ggplot 2
 ***
 ### Boxplots, Jittered Points and Violin Plots
 
 ![](02-data-visualisation_files/figure-html/mpg-jitter-box-violin-1.svg)&lt;!-- --&gt;
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -400,6 +459,10 @@ ggplot(mpg, aes(hwy)) +
 
 ![](02-data-visualisation_files/figure-html/mpg-histogram-1-1.svg)&lt;!-- --&gt;
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
+
 ---
 ## ggplot 2
 ***
@@ -414,6 +477,11 @@ ggplot(mpg, aes(hwy)) +
 --
 
 ![](02-data-visualisation_files/figure-html/mpg-histogram-1.svg)&lt;!-- --&gt;
+
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -435,7 +503,9 @@ ggplot(mpg, aes(hwy)) +
 
 ![](02-data-visualisation_files/figure-html/mpg-freq-poly-1.svg)&lt;!-- --&gt;
 
-
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## ggplot 2
@@ -444,6 +514,9 @@ ggplot(mpg, aes(hwy)) +
 
 ![](02-data-visualisation_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
+.footnote[
+This slide is inspired by content and code directly copied from the book ["ggplot2 - Elegant Graphics for Data Analysis"](http://bit.ly/2muDLCd) by [Hadley Wickhmam](http://hadley.nz/). Use R! Springer International Publishing, 2016. doi:10.1007/978-3-319-24277-4_2.
+]
 
 ---
 ## Library
@@ -481,17 +554,51 @@ grid.arrange(g_freq, g_hist, ncol = 2)
 ]
 
 .big[
-[Hadley Wickham - R for Data Science](http://bit.ly/2n0YYah)
+["R for Data Science"](http://bit.ly/wickham_r4ds) by [Hadley Wickhmam](http://hadley.nz/)
 ]
 
-...and if you have questions, just write me and email:    [r-tistic@lse.de](r-tistic@lse.de)
+
+---
+## Final words
+***
+
+### Contact
+.button1[[email](mailto:r-tistic@lse.de)]
+.button1[[website](http://www.lse.de/r-tistic)]
+.button1[[twitter](https://twitter.com/Larnsce)]
+
+### Slides
+Source code available on [GitHub](http://bit.ly/rtistic_repo)
+
+### References 
+RStudio Team (2016). RStudio: Integrated Development for R. RStudio, Inc., Boston, MA URL http://www.rstudio.com/  
+Slides created via the R package [xaringan](https://github.com/yihui/xaringan)  
+The chakra comes from [remark.js](https://remarkjs.com), [knitr](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com)
     </textarea>
 <script src="remark-lib/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightLanguage": "R",
 "highlightLines": true
 });
-if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {window.dispatchEvent(new Event('resize'));});</script>
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 # R-tistic
 
-Repo for reproducible, open source classes using R.
+Repo for reproducible, open source classes using R. 
 
 ## License
 

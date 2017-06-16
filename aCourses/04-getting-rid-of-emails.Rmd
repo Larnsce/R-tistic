@@ -1,6 +1,6 @@
 ---
 title: "R-tistic"
-subtitle: "Let's get rid of emails"
+subtitle: "Basics of data manipulation"
 date: June 15, 2017
 author: Lars Schoebitz </br>r-tistic@lse.de
 output:
@@ -14,7 +14,6 @@ output:
       highlightLines: true
     navigation: 
       click: true
-    bibliography: systems.bib
 ---
 
 layout: true
@@ -27,8 +26,10 @@ class: theme
 
 1. Introduction to R and RStudio
     - basics of data visualisation 
-    - basics of reproducible research  
-2. **Basics of data manipulation**
+    - basics of reproducible research
+2. Basics of data manipulation
+    - using Slack for class communication
+    - data manipulation with dplyr
 3. Basics of using R for statistical analyses
 4. Basics of Git, GitHub and collaborative programming
 5. Advanced classes of the above
@@ -40,8 +41,10 @@ class: theme
 
 1. Introduction to R and RStudio
     - basics of data visualisation 
-    - basics of reproducible research  
-2. **Basics of using Slack for class communication**
+    - basics of reproducible research
+2. Basics of data manipulation
+    - **using Slack for class communication**
+    - data manipulation with dplyr
 3. Basics of using R for statistical analyses
 4. Basics of Git, GitHub and collaborative programming
 5. Advanced classes of the above
@@ -145,7 +148,7 @@ Inspired by [Slides](http://bit.ly/2rhmMWy) from [Nomaan Ahgharian](http://bit.l
 ![](https://s3.amazonaws.com/media-p.slid.es/uploads/209433/images/1523632/Screenshot_2015-06-22_15.07.06.png)
 
 .footnote[
-Inspired by [Slides](http://bit.ly/2rhmMWy) from [Nomaan Ahgharian](http://bit.ly/2t20iKt) under [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/). Source of image/ [here](https://s3.amazonaws.com/media-p.slid.es/uploads/209433/images/1523632/Screenshot_2015-06-22_15.07.06.png)
+Inspired by [Slides](http://bit.ly/2rhmMWy) from [Nomaan Ahgharian](http://bit.ly/2t20iKt) under [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/). Source of image [here](https://s3.amazonaws.com/media-p.slid.es/uploads/209433/images/1523632/Screenshot_2015-06-22_15.07.06.png)
 ]
 
 ---
@@ -170,15 +173,9 @@ Poor file management.
 
 --
 
-Poor general management.
-
-> I cannot find the email right now, but I remember you wrote that...
-
---
-
 Reply All. All the time!
 
-> Thanks, [insert your name]! Very useful.
+> Thanks, **[insert your name]**! Very useful.
 
 ---
 ## Slack

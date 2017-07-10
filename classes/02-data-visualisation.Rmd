@@ -14,7 +14,6 @@ output:
       highlightLines: true
     navigation: 
       click: true
-    bibliography: systems.bib
 ---
 
 ```{r setup, include=FALSE}

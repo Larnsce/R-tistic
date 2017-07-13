@@ -1,0 +1,64 @@
+---
+title: "Data manipulation functions"
+author: "Lars Schoebitz"
+date: "June 20, 2017"
+output: html_document
+---
+
+# Purpose
+
+The purpose of this document is to compile functions for data manipulation using the `dplyr` and `tidyr` package. It will largely be based on questions that were raised during the classes. 
+
+# Functions
+
+## The `filter()` functions 
+
+During the class we used the `filter()` function of the `dplyr` package to manipulate a dataset by only selecting specific rows based on a conditions. One of the first tasks was to:
+
+    Filter the dataframe flights of the nyscflights13 package by JetBlue Airways.
+    
+The tricky part about this task was that the actual dataframe does not have any observations with the value "JetBlue Airways". Looking at the helpfile of the dataset by typing `?flights`, it was identified that the package `nycflights13` contains another dataset, called `airlines`. From this dataset, we could easily identify the code for the carrier variable, which was 'B6'. It was easy because the dataset only contains 16 observations.
+
+We could then use:
+
+    flights %>% 
+      filter(carrier == "B6")
+
+to filter out only the observations for JetBlue Airways.
+
+## The `filter()` function in combination with `str_detect()`
+
+The next task was to:
+
+    Identify all flights departing from John F Kennedy Intl. Airport with the destination of Austin Bergstrom on April 1st 2013.
+    
+Again, the observations in the `flights` dataset do not contain the actual name of the Airport, but rather the FAA airport code. This time, we had to look ath the `airports` dataset to identify, which FAA airport code is related to the two airports of concern. 
+
+While there are several ways to do this, many of which are rather manual, there is one way to do this with actual R functions. 
+
+We are using the filter() function in combination with the function `str_detect`. This function is part of the `stringr` package, so if you want to use it you must first install it with `install.packages("stringr")` and then load it into your script with `library(stringr)`. Look at the help file for `stringr` to learn more about this function.
+
+The specific use for the task above is the following:
+
+    airports %>% 
+      filter(
+        str_detect(name, "Kennedy|Berg")
+      )
+      
+This code returns the two airports that have the character strings "Kennedy" or "Berg" in their name. Note that case matters here and "kennedy" would not identify the airport. You can, however, use any expression that matched the actual string you are looking for. 
+
+Another example with the same result:
+
+    airports %>% 
+      filter(
+        str_detect(name, "enned|gstr")
+      )
+      
+Using the combination of `filter(str_detect())` for rows is the equivalent of using `select(contains())` for columns. 
+
+# Questions
+
+Please directly comment on this post if you have any questions.
+
+
+

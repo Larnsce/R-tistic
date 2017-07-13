@@ -1,0 +1,34 @@
+---
+title: "Questions"
+author: "Lars Schoebitz"
+date: "June 20, 2017"
+output: html_document
+---
+
+# How to use R dplyr mutate() to manipulate character variable
+
+I am working with a dataset that uses two different character strings to identify a number countries in one variable. For example, both `uganda_17` and `uganda` are included as different observations. My goal is to transform all observations that contain "_15" to observations that do not include this string and therefore match with the other observations.
+
+```{r}
+
+rm(list = ls())
+
+library(dplyr)
+library(tidyr)
+
+tibble_df <- tibble(country = c("uganda", "uganda_17", "brazil", "brazil_17", "poland", "poland_17"), year = c("2015", "2017", "2015", "2017", "2015", "2017"))
+
+
+tibble_df %>% 
+  separate(
+    col = country,
+    into = c("country", "delete"),
+    sep = "_17"
+  ) %>% 
+  select(-delete)
+
+  
+
+
+```
+

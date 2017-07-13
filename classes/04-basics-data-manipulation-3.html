@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>R-tistic</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Lars Schoebitz r-tistic@lse.de" />
+    <meta name="date" content="2017-07-13" />
+    <link rel="stylesheet" href="r-tistic_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R-tistic
+## Basics of Data Manipulation
+### Lars Schoebitz </br><a href="mailto:r-tistic@lse.de">r-tistic@lse.de</a>
+### July 13, 2017
+
+---
+
+
+
+
+
+
+
+
+layout: true
+class: theme
+
+---
+class: inverse, middle, center
+
+.superlarge[Overview]
+
+---
+## R-tistic
+***
+### Overview
+
+1. Introduction to R and RStudio
+    - basics of data visualisation 
+    - basics of reproducible research
+2. Basics of data manipulation
+    - using Slack for class communication
+    - data manipulation with dplyr
+3. Basics of using R for statistical analyses
+4. Basics of Git, GitHub and collaborative programming
+5. Advanced classes of the above
+
+---
+## R-tistic
+***
+### Overview
+
+1. Introduction to R and RStudio
+    - basics of data visualisation 
+    - basics of reproducible research
+2. Basics of data manipulation
+    - using Slack for class communication
+    - **data manipulation with dplyr**
+3. Basics of using R for statistical analyses
+4. Basics of Git, GitHub and collaborative programming
+5. Advanced classes of the above
+
+---
+## R-tistic
+***
+### Overview
+
+1. Introduction to R and RStudio
+    - basics of data visualisation 
+    - basics of reproducible research
+2. Basics of data manipulation
+    - using Slack for class communication
+    - **data manipulation with dplyr**
+3. Basics of data wrangling
+    - **data import with readr**
+    - **data wrangling with tidyr**
+4. Basics of RMarkdown
+    - **write a report with RMarkdown**
+5. Basics of using R for statistical analyses
+6. Basics of Git, GitHub and collaborative programming
+7. Advanced classes of the above
+
+---
+class: inverse, middle, center
+
+.superlarge[Recapitulation]
+
+---
+## Recap
+***
+
+.pull-left[What have you worked on between the last class (15.06.2017) and today?
+
+![](https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif)]
+
+.footnote[
+Images taken from [https://giphy.com/](https://giphy.com/)
+]
+
+--
+
+.pull-right[Who is willing to use **Slack** for class communication?
+
+![](https://media.giphy.com/media/iW8tsoJWcfPc4/giphy.gif)
+
+]
+
+---
+## Recap 
+***
+### five key dplyr functions
+
+- pick observations by their values with `filter()`
+- reorder the rows with `arrange()`
+- pick variables (columns) by their names with `select()`
+- create new variables with functions of existing variables with `mutate()`
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["R for Data Science"](http://bit.ly/wickham_r4ds) by [Hadley Wickhmam](http://hadley.nz/) available under a [(CC BY-NC-ND 3.0 US)](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
+]
+
+---
+## Recap
+***
+### filter observations with filter()
+
+Identify all flights departing from John F Kennedy Intl. Airport **and** with the destination of Austin Bergstrom **and** on April 1st 2013.
+
+
+```r
+flights %&gt;% 
+  filter(
+    origin == "JFK",
+    dest == "AUS",
+    day == 1,
+    month == 4
+  ) 
+```
+
+---
+## Recap
+***
+### select columns (variables) with select()
+
+
+```r
+flights %&gt;% 
+  filter(
+    origin == "JFK",
+    dest == "AUS",
+    day == 1,
+    month == 4
+  ) %&gt;% 
+  select(1:3, origin, dest, time_hour)
+```
+
+
+---
+## Recap
+***
+### Use assignment operator `&lt;-` to save results 
+
+
+```r
+jfk_aus_0104 &lt;- flights %&gt;% 
+  filter(
+    origin == "JFK",
+    dest == "AUS",
+    day == 1,
+    month == 4
+  ) %&gt;% 
+  select(1:3, origin, dest, time_hour)
+```
+
+
+---
+## Recap
+***
+### New objects saved in "Global Environment" 
+
+![](figures/global_env.png)
+
+---
+## Recap
+***
+### Reorder rows with arrange()
+
+- changes the order of rows in a data frame instead of selecting them 
+- takes a data frame and a column name to order by
+
+
+```r
+View(jfk_aus_0104)
+```
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; day &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; origin &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dest &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; time_hour &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 09:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 17:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 16:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 20:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Recap
+***
+### Reorder rows with arrange()
+
+- arrange by `time_hour`
+
+
+```r
+jfk_aus_0104 %&gt;% 
+  arrange(time_hour) %&gt;% 
+  View()
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; day &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; origin &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dest &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; time_hour &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 09:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 16:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 17:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 20:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Recap
+***
+### Reorder rows with arrange()
+
+- arrange by `time_hour` in descending order
+
+
+```r
+jfk_aus_0104 %&gt;% 
+  arrange(desc(time_hour)) %&gt;% 
+  View()
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; day &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; origin &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dest &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; time_hour &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 20:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 17:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 16:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 09:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Recap
+***
+### Rename variables with rename()
+
+
+```r
+jfk_aus_0104 %&gt;% 
+  rename(
+    Year = year,
+    Month = month,
+    Day = day,
+    Origin = origin,
+    Destination = dest,
+    this_is_time_and_hour = time_hour
+  )
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Day &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Origin &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Destination &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; this_is_time_and_hour &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 09:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 17:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 16:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; JFK &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2013-04-01 20:00:00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Recap
+***
+### Adding new variables with mutate()
+
+- besides selecting sets of existing variables (columns), it can be useful to add variables (columns)
+- these variables are functions of existing variables
+- `mutate()` adds new columns add the end of your dataset
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["R for Data Science"](http://bit.ly/wickham_r4ds) by [Hadley Wickhmam](http://hadley.nz/) available under a [(CC BY-NC-ND 3.0 US)](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
+]
+
+---
+## Recap
+***
+### Adding new variables with mutate()
+
+First: select smaller dataset with select().
+
+
+```r
+flights_sml &lt;- flights %&gt;% 
+  select(year:day, ends_with("delay"), distance,air_time)
+```
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; day &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dep_delay &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; arr_delay &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; distance &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; air_time &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 227 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1416 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 227 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1089 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -18 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1576 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 183 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 762 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 116 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 719 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Recap
+***
+### Adding new variables with mutate()
+
+
+```r
+flights_sml %&gt;%
+  mutate(
+      gain = arr_delay - dep_delay,
+      hrs = air_time / 60,
+      gain_p_hr = gain / hrs
+  )
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; day &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dep_delay &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; arr_delay &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; distance &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; air_time &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; gain &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; hrs &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; gain_p_hr &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 227 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1416 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 227 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1089 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -18 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1576 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 183 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -17 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -5.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 762 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 116 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -19 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -9.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 719 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+class: inverse, middle, center
+
+.superlarge[Back to dplyr]
+
+---
+## Basics of Data Manipulation
+***
+### five key dplyr functions
+
+- pick observations by their values with `filter()`
+- reorder the rows with `arrange()`
+- pick variables (columns) by their names with `select()`
+- create new variables with functions of existing variables with `mutate()`
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["R for Data Science"](http://bit.ly/wickham_r4ds) by [Hadley Wickhmam](http://hadley.nz/) available under a [(CC BY-NC-ND 3.0 US)](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
+]
+
+---
+## Basics of Data Manipulation
+***
+### five key dplyr functions
+
+- pick observations by their values with `filter()`
+- reorder the rows with `arrange()`
+- pick variables (columns) by their names with `select()`
+- create new variables with functions of existing variables with `mutate()`
+- collapse many values down to a single summary with `summarise()`
+
+--
+
+These can be used in conjunction with `group_by`, which changes the scope of each function from operating on the entire dataset to operating on it group-by-group.
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["R for Data Science"](http://bit.ly/wickham_r4ds) by [Hadley Wickhmam](http://hadley.nz/) available under a [(CC BY-NC-ND 3.0 US)](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
+]
+
+---
+class: inverse, middle, center
+
+.superlarge[Grouped summaries with dplyr summarise()]
+
+---
+## summarise()
+***
+### Description
+
+- collapses a data frame to a single row 
+
+
+```r
+flights %&gt;% 
+  summarise(
+    delay = mean(dep_delay, na.rm = TRUE)
+  )
+```
+
+--
+
+
+```
+## # A tibble: 1 x 1
+##      delay
+##      &lt;dbl&gt;
+## 1 12.63907
+```
+
+- is that a useful result?
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["R for Data Science"](http://bit.ly/wickham_r4ds) by [Hadley Wickhmam](http://hadley.nz/) available under a [(CC BY-NC-ND 3.0 US)](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
+]
+
+---
+## summarise()
+***
+### Description
+
+- why do we not get a result?
+
+
+```r
+flights %&gt;% 
+  summarise(
+    delay = mean(dep_delay)
+  )
+```
+
+
+
+```
+## # A tibble: 1 x 1
+##   delay
+##   &lt;dbl&gt;
+## 1    NA
+```
+
+- use `na.rm = TRUE` to exclude observarions with `NA` from calculation of `mean()`
+
+.footnote[
+This slide is inspired by content and code directly copied from the book ["R for Data Science"](http://bit.ly/wickham_r4ds) by [Hadley Wickhmam](http://hadley.nz/) available under a [(CC BY-NC-ND 3.0 US)](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
+]
+
+---
+## summarise()
+***
+### mean()
+
+- what does mean() do?
+
+--
+
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; age &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Nienke &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Natalie &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Bernadette &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Moritz &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Imanol &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Lars &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; teacher &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+- `sum(age) = 27 + 27 + 27 + 30 + 29 + 30 = 170`
+- `n() = 6`
+- `mean(age) = sum(age) / n()` 
+- `mean(age) = 170 / 6  = 28.33`
+
+
+---
+## summarise()
+***
+### mean()
+
+- what does mean() do?
+
+
+```r
+r_tistic %&gt;%
+  summarise(
+    sum_age = sum(age),
+    count = n(),
+    mean_age_1 = sum(age)/n(),
+    mean_age_2 = sum_age/count,
+    mean_age_3 = mean(age)
+  )
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; sum_age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; count &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; mean_age_1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; mean_age_2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; mean_age_3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 170 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28.33 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## summarise()
+***
+### paired with group_by()
+
+- what does `sd()` do?
+
+
+```r
+r_tistic %&gt;%
+  group_by(status) %&gt;% 
+  summarise(
+    sum_age = sum(age),
+    count = n(),
+    mean_age = mean(age),
+    sd_age = sd(age)
+  )
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; sum_age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; count &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; mean_age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; sd_age &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 140 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.41 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; teacher &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## A bit of math
+***
+### sd()
+
+
+- what does sd() do?
+
+--
+
+- who can explain how the standard deviation is computed?
+
+--
+
+&gt; The standard deviation is computed by taking the square root of the mean of the squared deviations of the individual values from their mean value.
+
+--
+
+- what does that mean?
+
+---
+## Standard deviation
+***
+### R-tistic participants
+
+- calculate the mean of all values
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; age &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Nienke &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Natalie &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Bernadette &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Moritz &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Imanol &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Lars &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; teacher &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`mean(age) = 27 + 27 + 27 + 30 + 29 + 30 / 6  = 28.33`
+
+---
+## Standard deviation
+***
+### R-tistic participants
+
+- calculate deviation of each data point from the mean (28.33)
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dev_from_mean &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Nienke &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Natalie &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Bernadette &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Moritz &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Imanol &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Lars &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; teacher &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`dev_from_mean = (27 - 28.33), (27 - 28.33), (27 - 28.33), (30 - 28.33), (29 - 28.33), (30 - 28.33)`
+
+---
+## Standard deviation
+***
+### R-tistic participants
+
+- calculate deviation of each data point from the mean (28.33)
+- square the result of each
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dev_fr_mean &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dev_fr_mean_sqr &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Nienke &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Natalie &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Bernadette &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Moritz &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Imanol &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Lars &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; teacher &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.78 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Standard deviation
+***
+
+- the variance is the mean of these values
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dev_fr_mean &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dev_fr_mean_sqr &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Nienke &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Natalie &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Bernadette &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Moritz &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Imanol &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Lars &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; teacher &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.78 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`var(age) = sum(dev_fr_mean_sqr) / (n() - 1)` 
+`sum(dev_fr_mean_sqr) = 1.78 + 1.78 + 1.78 + 2.78 + 0.44 + 2.78 = 11.34`  
+`n() = 5`  
+`var(age) = 11.34 / 5 = 2.26`
+
+---
+## Standard deviation
+***
+
+- the variance is the mean of these values
+- the standard deviation is the squareroot of the variance
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dev_fr_mean &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; dev_fr_mean_sqr &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Nienke &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Natalie &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Bernadette &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Moritz &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Imanol &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; student &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Lars &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; teacher &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.78 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`sd(age) = sqrt(var(age))`  
+`var(age) = 2.26`  
+`sd(age) = sqrt(2.26) = 1.51`
+
+---
+## Standard deviation
+***
+
+
+```r
+r_tistic %&gt;% 
+  summarise(
+    mean_age = mean(age),
+    var_age = var(age),
+    sd_age = sd(age),
+    sd_age_2 = sqrt(var_age),
+    sd_age_3 = sqrt(sum((age - mean(age))^2)/(n() - 1))
+  )
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; mean_age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; var_age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; sd_age &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; sd_age_2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; sd_age_3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 28.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.51 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.51 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.51 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+- why "n() - 1"?
+- it's all about "Sample variance" vs. "Population variance"
+- know as "Bessel's correction", if interested to learn more, follow link below
+
+.footnote[[http://bit.ly/2ucjZTr](Bessel's Correction)]
+
+---
+class: inverse, middle, center
+
+.superlarge[Enough math, or?]
+
+---
+## Exercise 
+***
+
+1. Use the flights dataset and per destination, calculate:
+  - the count
+  - the mean of the distance
+  - the mean of the arrival delay
+  - save the dataframe as a new object to your environment
+2. Use the created object to manipulate the data, so that it shows only those observations with
+  - a count higher than 20
+  - that is not the destination "Honolulu Intl"
+  - save the manipulated dataframe as a new object to your environment
+3. Use the second created object and plot:
+  - the mean arrival delay over the mean distance
+  - add a smoother
+4. Visualise the number of observations (count) per destination
+
+---
+## Part 1
+***
+
+- Use the flights dataset and per destination, calculate:
+  - the count
+  - the mean of the distance
+  - the mean of the arrival delay
+  - save the dataframe as a new object to your environment
+  
+
+```r
+flights_summary &lt;- flights %&gt;% 
+  group_by(dest) %&gt;%
+  summarise(
+    count = n(),
+    mean_dist = mean(distance, na.rm = TRUE),
+    mean_delay = mean(arr_delay, na.rm = TRUE)
+  )
+```
+
+---
+## Part 2
+***
+
+- Use the created object to manipulate the data, so that it shows only those observations with:
+  - a count higher than 20
+  - that is not the destination "Honolulu Intl"
+  - save the manipulated dataframe as a new object to your environment
+
+
+```r
+flights_summary_filter &lt;- flights_summary  %&gt;%
+  filter(count &gt; 20, dest != "HNL") 
+```
+
+---
+## Part 3
+***
+
+- Use the second created object and plot:
+  - the mean arrival delay over the mean distance
+  - add a smoother
+  
+![](04-basics-data-manipulation-3_files/figure-html/flights-1-1.svg)&lt;!-- --&gt;
+
+---
+## Part 3
+***
+
+- Use the second created object and plot:
+  - the mean arrival delay over the mean distance
+  - add a smoother
+  
+
+```r
+ggplot(
+  data = flights_summary_filter, 
+  mapping = aes(x = mean_dist, y = mean_delay)
+       ) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  theme_bw(base_size = 18)
+```
+
+
+
+---
+## Part 4
+***
+
+- Visualise the number of observations (count) per destination
+
+![](04-basics-data-manipulation-3_files/figure-html/flights-2-1.svg)&lt;!-- --&gt;
+
+---
+## Part 4
+***
+
+- Visualise the number of observations (count) per destination
+
+
+```r
+ggplot(
+  data = flights_summary_filter, 
+  mapping = aes(x = mean_dist, y = mean_delay)
+  ) +
+  geom_point(aes(size = count)) +
+  geom_smooth(se = FALSE) +
+  theme_bw(base_size = 18)
+```
+
+---
+## Part 4.1
+***
+
+- Improve the visibility of individual points
+
+![](04-basics-data-manipulation-3_files/figure-html/flights-3-1.svg)&lt;!-- --&gt;
+
+---
+## Part 4.1
+***
+
+- Improve the visibility of individual points
+
+
+```r
+ggplot(
+  data = flights_summary_filter, 
+  mapping = aes(x = mean_dist, y = mean_delay)
+  ) +
+  geom_point(aes(size = count), alpha = 1/3) +
+  geom_smooth(se = FALSE) +
+  theme_bw(base_size = 18)
+```
+
+---
+## Grouping by multiple variables
+***
+
+When you group by multiple variables, each summary peels off one level of the grouping. That makes it easy to progressively roll up a dataset:
+
+
+```r
+flights %&gt;% 
+  group_by(year, month, day) %&gt;% 
+  summarise(
+    flights = n()
+  )
+```
+
+--
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; day &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; flights &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 842 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 943 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 914 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 915 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 720 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 832 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Grouping by multiple variables
+***
+
+- and per month
+
+
+```r
+flights %&gt;% 
+  group_by(year, month, day) %&gt;% 
+  summarise(
+    flights = n()
+  ) %&gt;% 
+  summarise(flights = sum(flights)))
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; flights &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 27004 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 24951 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28834 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28330 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28796 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 28243 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+class: inverse, middle, center
+
+.superlarge[
+Import your data with readr
+]
+
+---
+## The "read_*" functions
+***
+
+- read_csv() reads comma delimited files, which is one of the most common forms of data storage
+- read_csv2() reads semicolon separated files (common in countries where , is used as the decimal place), 
+- read_tsv() reads tab delimited files, 
+- and read_delim() reads in files with any delimiter.
+
+---
+class: inverse, middle, center
+
+.large[Who likes Star Wars?]
+
+![](https://media.giphy.com/media/6fScAIQR0P0xW/giphy.gif)
+
+--
+
+![](https://media.giphy.com/media/3ornka9rAaKRA2Rkac/giphy.gif)
+
+.footnote[
+Image taken from [https://giphy.com/](https://giphy.com/)
+]
+
+---
+## Star Wars
+***
+### Explore dataset
+    </textarea>
+<script src="remark-lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "R",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {window.dispatchEvent(new Event('resize'));});</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

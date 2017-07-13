@@ -1,0 +1,58 @@
+---
+title: "parked"
+author: "Lars Schoebitz"
+date: "July 13, 2017"
+output: html_document
+---
+
+
+    
+
+
+--- 
+## Exercise 
+***
+
+6. Visualise the number of observations (count) per destination
+
+```{r}
+
+ggplot(data = flights_summary_filter, mapping = aes(x = mean_dist, y = mean_delay)) +
+  geom_point(aes(size = count), alpha = 1/3) +
+  geom_smooth(se = FALSE)
+
+
+```
+
+
+--- 
+## Exercise 
+***
+### Use the pipe
+
+```{r mpg-facetting, echo=FALSE, fig.height=4, fig.width=9, warning=TRUE, cache=TRUE, dev='CairoSVG'}
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  facet_wrap(~class)
+
+```
+
+```{r}
+
+flights_plot <- flights %>% 
+  group_by(dest) %>%
+  summarise(
+    count = n(),
+    mean_dist = mean(distance, na.rm = TRUE),
+    mean_delay = mean(arr_delay, na.rm = TRUE)
+  ) %>% 
+  filter(count > 20, dest != "HNL")
+ 
+ggplot(data = flights_plot, mapping = aes(x = mean_dist, y = mean_delay)) +
+  geom_point(aes(size = count), alpha = 1/3) +
+  geom_smooth(se = FALSE)
+
+
+```
+

@@ -10,3 +10,4 @@ nycflights13
 gridExtra
 bindrcpp
 Cairo
+lubridate

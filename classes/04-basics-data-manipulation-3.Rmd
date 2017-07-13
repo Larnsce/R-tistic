@@ -27,6 +27,7 @@ library(nycflights13)
 library(gridExtra)
 library(Cairo)
 library(grDevices)
+library(lubridate)
 
 
 ```
@@ -486,6 +487,57 @@ This slide is inspired by content and code directly copied from the book ["R for
 ]
 
 ---
+## Task
+***
+
+- summarise the flights dataset by
+  - filtering all flights of May and depature delay bigger than 5, and of that
+    - calculate the mean of dep_delay
+    - calculate the number of observations
+    - calculate the standard deviation of dep_delay
+    - calculate the minimum and maximum for dep_delay
+  
+---
+## Task
+***
+
+```{r, eval=FALSE, include=TRUE}
+
+flights %>% 
+  filter(month == 5) %>% 
+  filter(dep_delay > 5) %>% 
+  summarise(
+    mean_delay = mean(dep_delay, na.rm = TRUE),
+    count = n(),
+    sd_delay = sd(dep_delay, na.rm = TRUE),
+    min_delay = min(dep_delay),
+    max_delay = max(dep_delay)
+  )
+
+
+```
+
+--
+
+
+```{r, echo=FALSE}
+
+flights %>% 
+  filter(month == 5) %>% 
+  filter(dep_delay > 5) %>% 
+  summarise(
+    mean_delay = mean(dep_delay, na.rm = TRUE),
+    count = n(),
+    sd_delay = sd(dep_delay, na.rm = TRUE),
+    min_delay = min(dep_delay),
+    max_delay = max(dep_delay)
+  ) %>% 
+  knitr::kable(align = 'c', format = 'html', digits = 0)
+
+```
+
+
+---
 ## summarise()
 ***
 ### mean()
@@ -777,7 +829,9 @@ class: inverse, middle, center
   - the mean of the distance
   - the mean of the arrival delay
   - save the dataframe as a new object to your environment
-  
+
+--
+
 ```{r}
 
 flights_summary <- flights %>% 
@@ -798,6 +852,8 @@ flights_summary <- flights %>%
   - a count higher than 20
   - that is not the destination "Honolulu Intl"
   - save the manipulated dataframe as a new object to your environment
+  
+--
 
 ```{r}
 
@@ -813,6 +869,8 @@ flights_summary_filter <- flights_summary  %>%
 - Use the second created object and plot:
   - the mean arrival delay over the mean distance
   - add a smoother
+
+--
   
 ```{r flights-1, echo=FALSE, fig.height=4, fig.width=9, message=FALSE, warning=FALSE, cache=TRUE, dev='CairoSVG'}
 
@@ -852,6 +910,8 @@ ggplot(
 
 - Visualise the number of observations (count) per destination
 
+--
+
 ```{r flights-2, echo=FALSE, fig.height=4, fig.width=9, message=FALSE, warning=FALSE, cache=TRUE, dev='CairoSVG'}
 
 ggplot(data = flights_summary_filter, mapping = aes(x = mean_dist, y = mean_delay)) +
@@ -867,6 +927,8 @@ ggplot(data = flights_summary_filter, mapping = aes(x = mean_dist, y = mean_dela
 ***
 
 - Visualise the number of observations (count) per destination
+
+--
 
 ```{r, echo = TRUE, eval = FALSE, message=FALSE, warning=FALSE}
 
@@ -887,6 +949,9 @@ ggplot(
 
 - Improve the visibility of individual points
 
+--
+
+
 ```{r flights-3, echo=FALSE, fig.height=4, fig.width=9, message=FALSE, warning=FALSE, cache=TRUE, dev='CairoSVG'}
 
 ggplot(data = flights_summary_filter, mapping = aes(x = mean_dist, y = mean_delay)) +
@@ -902,6 +967,9 @@ ggplot(data = flights_summary_filter, mapping = aes(x = mean_dist, y = mean_dela
 ***
 
 - Improve the visibility of individual points
+
+--
+
 
 ```{r, echo = TRUE, eval = FALSE, message=FALSE, warning=FALSE}
 
@@ -993,6 +1061,206 @@ Import your data with readr
 - read_tsv() reads tab delimited files, 
 - and read_delim() reads in files with any delimiter.
 
+
+---
+## Let's create some data
+***
+
+Please go to:
+
+.large[http://bit.ly/R-tistic_survey]
+
+and fill out the form.
+
+---
+## Download the data
+***
+
+Now go to:
+
+.large[https://github.com/larnsce/R-tistic]
+
+- click on classes
+- click on data
+- right-click on "r-tistic_data.csv"
+- save file to your desired location
+
+
+---
+## Read the data into R
+***
+
+- use `read_csv` to read the data into R
+- what do you observe?
+
+-- 
+
+- when you run read_csv() it prints out a column specification that gives the name and type of each column
+
+```{r, warning=FALSE, include=FALSE}
+
+read_csv(file = "data/r-tistic_data.csv")
+
+```
+
+---
+## read_csv() arguments
+***
+
+- explore additional arguments of the `read_csv` function
+
+--
+- `skip` can be very useful if documents have metadata before actual data start
+- `n_max` can be useful when dealing with huge datasets
+- `col_types` can be used to specify column types
+- try to add `col_names = FALSE` and see what happens
+
+--
+- feel free to play around with the dataset of the class
+
+
+
+---
+class: inverse, middle, center
+
+.superlarge[tidy data with tidyr]
+
+
+---
+## Let's tidy a real world data set
+***
+
+- go to:
+
+.large[http://data.worldbank.org/]
+
+- identify dataset for world's population (Population, total)
+- download dataset as CSV file and save to your data folder
+- go to your data folder, unzip the file and import the population data CSV into R
+
+---
+## World Bank
+***
+### Population, total
+
+- what do you observe?
+
+--
+
+```{r, include=TRUE, message=FALSE, warning=FALSE}
+
+pop <- read_csv(
+  file = "data/API_SP.POP.TOTL_DS2_en_csv_v2/API_SP.POP.TOTL_DS2_en_csv_v2.csv",
+  skip = 4
+  )
+
+
+```
+
+---
+## Task
+***
+
+- rename column `Country Name` to `country`
+- rename column `Country Code` to `country_code`
+- get rid of columns 3 and 4
+- filter the dataset so that you only have data for Argentina and Ireland
+- save dataset as a new object to your environment
+
+--
+
+```{r, include=TRUE, message=FALSE, warning=FALSE}
+
+pop_arg_irl <- pop %>% 
+  rename(
+    country = `Country Name`,
+    country_code = `Country Code`
+  ) %>% 
+  select(country, country_code, 5:61) %>% 
+  filter(country_code == "ARG" | country_code == "IRL")
+
+
+```
+
+---
+## Task
+***
+
+- rename column `Country Name` to `country`
+- rename column `Country Code` to `country_code`
+- get rid of columns 3 and 4
+- filter the dataset so that you only have data for Argentina and Ireland
+- save dataset as a new object to your environment
+
+
+```{r, include=TRUE, message=FALSE, warning=FALSE}
+
+pop_arg_irl <- pop %>% 
+  rename(
+    country = `Country Name`,
+    country_code = `Country Code`
+  ) %>% 
+  select(country, country_code, 5:61) %>% 
+  filter(country_code %in% c("ARG", "IRL"))
+
+```
+
+---
+## Task
+***
+
+- prepare a time series plot for Argentina and Ireland for the years from 1990 to 2015
+
+```{r pop-1, echo=FALSE, fig.height=4, fig.width=9, message=FALSE, warning=FALSE, cache=TRUE, dev='CairoSVG'}
+
+plot <- pop_arg_irl %>% 
+  select(country, country_code, `1960`:`2016`) %>% 
+  gather(key = year, value = population, `1960`:`2016`) %>% 
+  mutate(
+    year = as.integer(year)
+  ) %>% 
+  filter(year >= 1990 & year <= 2015)
+
+ggplot(data = plot, aes(x = year, y = population, color = country)) +
+  geom_point() +
+  geom_line() +
+  theme_bw(base_size = 14)
+
+  
+
+
+
+```
+
+---
+## Task
+***
+
+- original format
+- not in tidy format
+
+```{r, echo=FALSE}
+
+pop_arg_irl %>% 
+  select(1:6) %>% 
+  knitr::kable(format = 'html', align = 'c')
+
+```
+
+---
+## Tidy data format
+***
+
+There are three interrelated rules which make a dataset tidy:
+
+- each variable must have its own column.
+- each observation must have its own row.
+- each value must have its own cell.
+
+--
+
+![](http://r4ds.had.co.nz/images/tidy-1.png)
+
 ---
 class: inverse, middle, center
 
@@ -1012,5 +1280,12 @@ Image taken from [https://giphy.com/](https://giphy.com/)
 ## Star Wars
 ***
 ### Explore dataset
+
+```{r}
+
+
+starwars
+```
+
 
 

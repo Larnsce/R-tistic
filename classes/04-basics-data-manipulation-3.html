@@ -742,6 +742,60 @@ This slide is inspired by content and code directly copied from the book ["R for
 ]
 
 ---
+## Task
+***
+
+- summarise the flights dataset by
+  - filtering all flights of May and depature delay bigger than 5, and of that
+    - calculate the mean of dep_delay
+    - calculate the number of observations
+    - calculate the standard deviation of dep_delay
+    - calculate the minimum and maximum for dep_delay
+  
+---
+## Task
+***
+
+
+```r
+flights %&gt;% 
+  filter(month == 5) %&gt;% 
+  filter(dep_delay &gt; 5) %&gt;% 
+  summarise(
+    mean_delay = mean(dep_delay, na.rm = TRUE),
+    count = n(),
+    sd_delay = sd(dep_delay, na.rm = TRUE),
+    min_delay = min(dep_delay),
+    max_delay = max(dep_delay)
+  )
+```
+
+--
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; mean_delay &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; count &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; sd_delay &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; min_delay &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; max_delay &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 49 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8852 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 55 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 878 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
 ## summarise()
 ***
 ### mean()
@@ -1293,7 +1347,9 @@ class: inverse, middle, center
   - the mean of the distance
   - the mean of the arrival delay
   - save the dataframe as a new object to your environment
-  
+
+--
+
 
 ```r
 flights_summary &lt;- flights %&gt;% 
@@ -1313,6 +1369,8 @@ flights_summary &lt;- flights %&gt;%
   - a count higher than 20
   - that is not the destination "Honolulu Intl"
   - save the manipulated dataframe as a new object to your environment
+  
+--
 
 
 ```r
@@ -1327,6 +1385,8 @@ flights_summary_filter &lt;- flights_summary  %&gt;%
 - Use the second created object and plot:
   - the mean arrival delay over the mean distance
   - add a smoother
+
+--
   
 ![](04-basics-data-manipulation-3_files/figure-html/flights-1-1.svg)&lt;!-- --&gt;
 
@@ -1357,6 +1417,8 @@ ggplot(
 
 - Visualise the number of observations (count) per destination
 
+--
+
 ![](04-basics-data-manipulation-3_files/figure-html/flights-2-1.svg)&lt;!-- --&gt;
 
 ---
@@ -1364,6 +1426,8 @@ ggplot(
 ***
 
 - Visualise the number of observations (count) per destination
+
+--
 
 
 ```r
@@ -1382,6 +1446,9 @@ ggplot(
 
 - Improve the visibility of individual points
 
+--
+
+
 ![](04-basics-data-manipulation-3_files/figure-html/flights-3-1.svg)&lt;!-- --&gt;
 
 ---
@@ -1389,6 +1456,9 @@ ggplot(
 ***
 
 - Improve the visibility of individual points
+
+--
+
 
 
 ```r
@@ -1542,6 +1612,201 @@ Import your data with readr
 - read_tsv() reads tab delimited files, 
 - and read_delim() reads in files with any delimiter.
 
+
+---
+## Let's create some data
+***
+
+Please go to:
+
+.large[http://bit.ly/R-tistic_survey]
+
+and fill out the form.
+
+---
+## Download the data
+***
+
+Now go to:
+
+.large[https://github.com/larnsce/R-tistic]
+
+- click on classes
+- click on data
+- right-click on "r-tistic_data.csv"
+- save file to your desired location
+
+
+---
+## Read the data into R
+***
+
+- use `read_csv` to read the data into R
+- what do you observe?
+
+-- 
+
+- when you run read_csv() it prints out a column specification that gives the name and type of each column
+
+
+
+---
+## read_csv() arguments
+***
+
+- explore additional arguments of the `read_csv` function
+
+--
+- `skip` can be very useful if documents have metadata before actual data start
+- `n_max` can be useful when dealing with huge datasets
+- `col_types` can be used to specify column types
+- try to add `col_names = FALSE` and see what happens
+
+--
+- feel free to play around with the dataset of the class
+
+
+
+---
+class: inverse, middle, center
+
+.superlarge[tidy data with tidyr]
+
+
+---
+## Let's tidy a real world data set
+***
+
+- go to:
+
+.large[http://data.worldbank.org/]
+
+- identify dataset for world's population (Population, total)
+- download dataset as CSV file and save to your data folder
+- go to your data folder, unzip the file and import the population data CSV into R
+
+---
+## World Bank
+***
+### Population, total
+
+- what do you observe?
+
+--
+
+
+```r
+pop &lt;- read_csv(
+  file = "data/API_SP.POP.TOTL_DS2_en_csv_v2/API_SP.POP.TOTL_DS2_en_csv_v2.csv",
+  skip = 4
+  )
+```
+
+---
+## Task
+***
+
+- rename column `Country Name` to `country`
+- rename column `Country Code` to `country_code`
+- get rid of columns 3 and 4
+- filter the dataset so that you only have data for Argentina and Ireland
+- save dataset as a new object to your environment
+
+--
+
+
+```r
+pop_arg_irl &lt;- pop %&gt;% 
+  rename(
+    country = `Country Name`,
+    country_code = `Country Code`
+  ) %&gt;% 
+  select(country, country_code, 5:61) %&gt;% 
+  filter(country_code == "ARG" | country_code == "IRL")
+```
+
+---
+## Task
+***
+
+- rename column `Country Name` to `country`
+- rename column `Country Code` to `country_code`
+- get rid of columns 3 and 4
+- filter the dataset so that you only have data for Argentina and Ireland
+- save dataset as a new object to your environment
+
+
+
+```r
+pop_arg_irl &lt;- pop %&gt;% 
+  rename(
+    country = `Country Name`,
+    country_code = `Country Code`
+  ) %&gt;% 
+  select(country, country_code, 5:61) %&gt;% 
+  filter(country_code %in% c("ARG", "IRL"))
+```
+
+---
+## Task
+***
+
+- prepare a time series plot for Argentina and Ireland for the years from 1990 to 2015
+
+![](04-basics-data-manipulation-3_files/figure-html/pop-1-1.svg)&lt;!-- --&gt;
+
+---
+## Task
+***
+
+- original format
+- not in tidy format
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; country &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; country_code &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 1960 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 1961 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 1962 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 1963 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Argentina &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; ARG &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20619075 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20953077 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 21287682 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 21621840 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Ireland &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IRL &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2828600 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2824400 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2836050 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2852650 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Tidy data format
+***
+
+There are three interrelated rules which make a dataset tidy:
+
+- each variable must have its own column.
+- each observation must have its own row.
+- each value must have its own cell.
+
+--
+
+![](http://r4ds.had.co.nz/images/tidy-1.png)
+
 ---
 class: inverse, middle, center
 
@@ -1561,6 +1826,30 @@ Image taken from [https://giphy.com/](https://giphy.com/)
 ## Star Wars
 ***
 ### Explore dataset
+
+
+```r
+starwars
+```
+
+```
+## # A tibble: 87 x 13
+##                  name height  mass    hair_color  skin_color eye_color
+##                 &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;         &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;
+##  1     Luke Skywalker    172    77         blond        fair      blue
+##  2              C-3PO    167    75          &lt;NA&gt;        gold    yellow
+##  3              R2-D2     96    32          &lt;NA&gt; white, blue       red
+##  4        Darth Vader    202   136          none       white    yellow
+##  5        Leia Organa    150    49         brown       light     brown
+##  6          Owen Lars    178   120   brown, grey       light      blue
+##  7 Beru Whitesun lars    165    75         brown       light      blue
+##  8              R5-D4     97    32          &lt;NA&gt;  white, red       red
+##  9  Biggs Darklighter    183    84         black       light     brown
+## 10     Obi-Wan Kenobi    182    77 auburn, white        fair blue-gray
+## # ... with 77 more rows, and 7 more variables: birth_year &lt;dbl&gt;,
+## #   gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
+```
     </textarea>
 <script src="remark-lib/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
